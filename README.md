@@ -24,7 +24,7 @@ riverflow is the **lightweight, single-operator counterpart** of that idea. Shop
 riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
-├── skills/                # Claude Code skill shipped with riverflow
+├── .claude/skills/        # Claude Code skill shipped with riverflow
 │   └── riverflow-capture/ # lock in & save decisions from a conversation → artifacts
 └── docs/
     ├── framework/             # framework definition (the meta layer)
