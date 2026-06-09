@@ -60,13 +60,14 @@ The simplest way to add riverflow to a project: paste this prompt to Claude (in 
 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir, then set my project up to
-follow riverflow: copy its `docs/framework/` and `docs/templates/` into my repo, add
-an `AGENTS.md` based on riverflow's, and create the empty `docs/{decisions,stories,
+follow riverflow: copy its `docs/framework/` and `docs/templates/` into my repo, copy
+its `.claude/skills/riverflow-capture/` skill into my `.claude/skills/`, add an
+`AGENTS.md` based on riverflow's, and create the empty `docs/{decisions,stories,
 specs,wiki,backlogs,worklogs}/` folders. Read riverflow's README + AGENTS.md first,
 then summarize the conventions back to me.
 ```
 
-Claude reads the framework, copies the conventions and templates into your repo, and scaffolds the `docs/` layout — no manual setup.
+Claude reads the framework, copies the conventions, templates, and the `riverflow-capture` skill into your repo, and scaffolds the `docs/` layout — no manual setup.
 
 ## How to use it
 
