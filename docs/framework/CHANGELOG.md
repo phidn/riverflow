@@ -11,6 +11,22 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.2.0] — 2026-06-09
+
+### Added
+- **`rv:recap` now crystallizes the intent layer** — a bare `rv:recap` also writes a thin `spec` +
+  `story` (with a Proof table seeded from the session's real test/QA evidence), alongside ADR +
+  worklog + wiki. This is the fix for **emergent** work: you don't write the spec first, recap
+  crystallizes it at the end from what was actually built.
+- **New targeted parts:** `rv:recap spec` and `rv:recap story`.
+- **Emergence gate:** spec/story is auto-created only when the session built a real feature (the
+  "can I tell it's done without reading the code?" test); a one-off tiny patch gets none. Existing
+  specs/stories are **updated**, not duplicated.
+
+### Changed
+- A bare `rv:recap` is now the full package **spec/story (if emergent) + ADR + worklog + wiki**
+  (previously ADR + worklog + wiki). Backward compatible — no trigger renamed, no artifact removed.
+
 ## [0.1.1] — 2026-06-09
 
 ### Changed
