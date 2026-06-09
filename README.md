@@ -24,9 +24,10 @@ riverflow is the **lightweight, single-operator counterpart** of that idea. Shop
 riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
-├── .claude/skills/        # Claude Code skills shipped with riverflow
-│   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts
-│   └── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → suggest update
+├── .claude/skills/        # Claude Code skills
+│   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts   (shipped on install)
+│   ├── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → update (shipped on install)
+│   └── rv:release/        # /rv:release — bump the core version + CHANGELOG  (CORE-ONLY, NOT installed)
 └── docs/
     ├── framework/             # framework definition (the meta layer)
     │   ├── VERSION            # current framework version (semver) — single source of truth
