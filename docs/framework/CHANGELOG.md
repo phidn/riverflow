@@ -11,6 +11,19 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.1.1] — 2026-06-09
+
+### Changed
+- **Skill triggers are now prefixed.** `riverflow-capture` → **`rv:recap`**, `riverflow-update` →
+  **`rv:update-version`** (slash commands `/rv:recap`, `/rv:update-version`). An installed repo
+  picking up this version gets the renamed skill folders; the old folders can be removed.
+
+### Added
+- **`rv:recap` now recaps the wiki too** (third artifact type, alongside ADR + worklog) — closes
+  the phase-6 "update the wiki on ship" gap.
+- **Targeted recap from the prefix:** `rv:recap wiki` / `rv:recap worklog` / `rv:recap adr` do just
+  that slice; a bare `rv:recap` does the full package.
+
 ## [0.1.0] — 2026-06-09
 
 First versioned release. Establishes the baseline an installed repo can compare against.
