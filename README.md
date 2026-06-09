@@ -24,10 +24,13 @@ riverflow is the **lightweight, single-operator counterpart** of that idea. Shop
 riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
-├── .claude/skills/        # Claude Code skill shipped with riverflow
-│   └── riverflow-capture/ # lock in & save decisions from a conversation → artifacts
+├── .claude/skills/        # Claude Code skills shipped with riverflow
+│   ├── riverflow-capture/ # lock in & save decisions from a conversation → artifacts
+│   └── riverflow-update/  # check the installed version vs. latest on GitHub → suggest update
 └── docs/
     ├── framework/             # framework definition (the meta layer)
+    │   ├── VERSION            # current framework version (semver) — single source of truth
+    │   ├── CHANGELOG.md       # what changed per version (the update check reads this)
     │   ├── 00-overview.md     # philosophy + the human ↔ agent collaboration model
     │   ├── 01-roles.md        # roles & responsibility boundaries, human / agent
     │   ├── 02-lifecycle.md    # phases: discovery → spec → decision → build → review → ship
@@ -61,13 +64,13 @@ The simplest way to add riverflow to a project: paste this prompt to Claude (in 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir, then set my project up to
 follow riverflow: copy its `docs/framework/` and `docs/templates/` into my repo, copy
-its `.claude/skills/riverflow-capture/` skill into my `.claude/skills/`, add an
-`AGENTS.md` based on riverflow's, and create the empty `docs/{decisions,stories,
-specs,wiki,backlogs,worklogs}/` folders. Read riverflow's README + AGENTS.md first,
-then summarize the conventions back to me.
+its `.claude/skills/riverflow-capture/` and `.claude/skills/riverflow-update/` skills
+into my `.claude/skills/`, add an `AGENTS.md` based on riverflow's, and create the
+empty `docs/{decisions,stories,specs,wiki,backlogs,worklogs}/` folders. Read
+riverflow's README + AGENTS.md first, then summarize the conventions back to me.
 ```
 
-Claude reads the framework, copies the conventions, templates, and the `riverflow-capture` skill into your repo, and scaffolds the `docs/` layout — no manual setup.
+Claude reads the framework, copies the conventions, templates, and the `riverflow-capture` + `riverflow-update` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
 
 ## How to use it
 
@@ -75,5 +78,19 @@ Claude reads the framework, copies the conventions, templates, and the `riverflo
 2. When you start a new product/feature, copy the matching template from `docs/templates/` into `docs/<type>/`.
 3. Name files per `docs/framework/04-conventions.md`.
 4. Agents read `AGENTS.md` before creating or editing any artifact.
+
+## Versioning & updates
+
+riverflow stamps its own version at **`docs/framework/VERSION`** (semver, single source of truth).
+It lives *inside* the framework dir on purpose: it travels with `docs/framework/` on install, and
+it stays namespaced away from your product's own version. `docs/framework/CHANGELOG.md` records
+what changed per version.
+
+To check whether your install is behind, type **`rv:update-version`** (the `riverflow-update`
+skill; plain phrasing like "check for riverflow updates" also works). It clones the repo into a
+temp dir, compares the upstream `VERSION`
+with yours, shows the changelog delta, and — only if you confirm — copies the newer
+framework/templates/skills over, never touching your own `docs/` artifacts. See
+[ADR-0003](docs/decisions/0003-self-versioning-and-update-check.md) for the design.
 
 **Maturity stance:** riverflow deliberately stays a **lightweight, pure-Markdown method** — it borrows selectively from mature ideas (risk lanes, schema'd worklogs, proof tables) at "Markdown weight," and adds **no** tooling/DB. This is a deliberate stopping point: enough discipline to use for real, still read-it-and-understand-it, and applicable even to non-code products. Heavy automation (verification runners, self-scoring observability, self-improving loops) belongs to an engine with tooling — not to riverflow.
