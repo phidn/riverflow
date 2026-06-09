@@ -1,7 +1,7 @@
 # Changelog — riverflow
 
 All notable changes to the riverflow framework. The current version lives in
-[`VERSION`](VERSION) (single source of truth). The `riverflow-update` skill reads this file to
+[`VERSION`](VERSION) (single source of truth). The `rv:update-version` skill reads this file to
 show *what changed* between the installed version and the latest on GitHub.
 
 Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer](https://semver.org/).
@@ -19,13 +19,13 @@ First versioned release. Establishes the baseline an installed repo can compare 
 - **Self-versioning.** `docs/framework/VERSION` is the single source of truth, namespaced under
   the framework dir so it travels with `docs/framework/` on install and never collides with a host
   project's own root `VERSION`.
-- **`riverflow-update` skill** — clones the GitHub repo into a temp dir, semver-compares the
+- **`rv:update-version` skill** — clones the GitHub repo into a temp dir, semver-compares the
   remote `VERSION` against the installed one, shows the changelog delta, and suggests the update.
 - This `CHANGELOG.md`.
 
 ### Baseline (already present before versioning)
 - Framework docs `00`–`06` (overview, roles, lifecycle, artifacts, conventions, risk, intake).
 - Templates for every artifact type.
-- `riverflow-capture` skill.
+- `rv:recap` skill (formerly `riverflow-capture`).
 - `backlog` per-item artifact ([ADR-0001](../decisions/0001-backlog-per-item-files.md)).
 - LLM `wiki` as-built layer ([ADR-0002](../decisions/0002-llm-wiki-as-built-layer.md)).

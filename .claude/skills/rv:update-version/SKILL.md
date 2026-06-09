@@ -1,9 +1,9 @@
 ---
-name: riverflow-update
-description: Check whether the installed riverflow framework is out of date against the latest on GitHub, and offer to update. Canonical trigger is the prefix "rv:update-version". Clones https://github.com/phidn/riverflow into a temp dir, reads its docs/framework/VERSION, semver-compares it with the version installed in this repo, shows the changelog delta, and — only if the user confirms — copies the newer framework/templates/skills over (never touching the user's own docs instances). Use when the user types "rv:update-version" or otherwise asks to check/apply riverflow updates (e.g. "is riverflow up to date?", "update riverflow", "/riverflow-update").
+name: rv:update-version
+description: Check whether the installed riverflow framework is out of date against the latest on GitHub, and offer to update. Canonical trigger is the prefix "rv:update-version". Clones https://github.com/phidn/riverflow into a temp dir, reads its docs/framework/VERSION, semver-compares it with the version installed in this repo, shows the changelog delta, and — only if the user confirms — copies the newer framework/templates/skills over (never touching the user's own docs instances). Use when the user types "rv:update-version" or otherwise asks to check/apply riverflow updates (e.g. "is riverflow up to date?", "update riverflow", "/rv:update-version").
 ---
 
-# riverflow-update
+# rv:update-version
 
 Tells an installed repo whether its riverflow framework is **behind upstream**, shows **what
 changed**, and — on confirmation — applies the update. The source of truth for "latest" is the
@@ -15,7 +15,7 @@ Git repo itself (no registry, no infra). See [ADR-0003](../../../docs/decisions/
 ## When to use
 
 Canonical trigger: the prefix **`rv:update-version`**. Also fires on natural phrasing — "check for
-riverflow updates", "is riverflow up to date?", "update riverflow", "/riverflow-update". Do NOT run
+riverflow updates", "is riverflow up to date?", "update riverflow", "/rv:update-version". Do NOT run
 on every session — only when triggered.
 
 ## Procedure
@@ -23,7 +23,7 @@ on every session — only when triggered.
 ### 1. Find the installed version
 
 Look for the local `VERSION` file in these candidate paths, first match wins (covers the standard
-and embedded install shapes — same detection style as `riverflow-capture`):
+and embedded install shapes — same detection style as `rv:recap`):
 
 1. `docs/framework/VERSION`  (standard riverflow install)
 2. `framework/VERSION`       (embedded install)
@@ -88,8 +88,8 @@ Updating is the irreversible part. **Ask first; do not auto-apply.** When the us
 # standard install layout — adjust the dest prefix for an embedded layout
 cp -R "$TMP/docs/framework/."            docs/framework/
 cp -R "$TMP/docs/templates/."            docs/templates/
-cp -R "$TMP/.claude/skills/riverflow-capture/." .claude/skills/riverflow-capture/
-cp -R "$TMP/.claude/skills/riverflow-update/."  .claude/skills/riverflow-update/
+cp -R "$TMP/.claude/skills/rv:recap/."          ".claude/skills/rv:recap/"
+cp -R "$TMP/.claude/skills/rv:update-version/." ".claude/skills/rv:update-version/"
 ```
 
 - This overwrites the framework docs, templates, and the riverflow skills (the parts the user does

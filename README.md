@@ -25,8 +25,8 @@ riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
 ├── .claude/skills/        # Claude Code skills shipped with riverflow
-│   ├── riverflow-capture/ # lock in & save decisions from a conversation → artifacts
-│   └── riverflow-update/  # check the installed version vs. latest on GitHub → suggest update
+│   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts
+│   └── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → suggest update
 └── docs/
     ├── framework/             # framework definition (the meta layer)
     │   ├── VERSION            # current framework version (semver) — single source of truth
@@ -64,13 +64,13 @@ The simplest way to add riverflow to a project: paste this prompt to Claude (in 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir, then set my project up to
 follow riverflow: copy its `docs/framework/` and `docs/templates/` into my repo, copy
-its `.claude/skills/riverflow-capture/` and `.claude/skills/riverflow-update/` skills
+its `.claude/skills/rv:recap/` and `.claude/skills/rv:update-version/` skills
 into my `.claude/skills/`, add an `AGENTS.md` based on riverflow's, and create the
 empty `docs/{decisions,stories,specs,wiki,backlogs,worklogs}/` folders. Read
 riverflow's README + AGENTS.md first, then summarize the conventions back to me.
 ```
 
-Claude reads the framework, copies the conventions, templates, and the `riverflow-capture` + `riverflow-update` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
+Claude reads the framework, copies the conventions, templates, and the `rv:recap` + `rv:update-version` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
 
 ## How to use it
 
@@ -86,7 +86,7 @@ It lives *inside* the framework dir on purpose: it travels with `docs/framework/
 it stays namespaced away from your product's own version. `docs/framework/CHANGELOG.md` records
 what changed per version.
 
-To check whether your install is behind, type **`rv:update-version`** (the `riverflow-update`
+To check whether your install is behind, type **`/rv:update-version`** (the `rv:update-version`
 skill; plain phrasing like "check for riverflow updates" also works). It clones the repo into a
 temp dir, compares the upstream `VERSION`
 with yours, shows the changelog delta, and — only if you confirm — copies the newer

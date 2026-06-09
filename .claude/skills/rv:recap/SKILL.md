@@ -1,9 +1,9 @@
 ---
-name: riverflow-capture
-description: Lock in and save the decisions + ways-of-working worth keeping from the current conversation into riverflow artifacts (ADR + worklog + wiki). Canonical trigger is the prefix "rv:recap". Auto-selects a recommendation and writes it immediately (without asking first); the user adjusts afterward if needed. Supports targeted recap from the prefix — "rv:recap wiki" / "rv:recap worklog" / "rv:recap adr" do just that part; a bare "rv:recap" does the full package. Use when the user types "rv:recap" (optionally followed by wiki/worklog/adr) or otherwise asks to save/record from this conversation into riverflow (e.g. "save to riverflow", "capture this into riverflow", "/riverflow-capture"). Scans the conversation, selects the candidates worth keeping, writes the files to riverflow spec, updates the Decision Log + the wiki.
+name: rv:recap
+description: Lock in and save the decisions + ways-of-working worth keeping from the current conversation into riverflow artifacts (ADR + worklog + wiki). Canonical trigger is the prefix "rv:recap". Auto-selects a recommendation and writes it immediately (without asking first); the user adjusts afterward if needed. Supports targeted recap from the prefix — "rv:recap wiki" / "rv:recap worklog" / "rv:recap adr" do just that part; a bare "rv:recap" does the full package. Use when the user types "rv:recap" (optionally followed by wiki/worklog/adr) or otherwise asks to save/record from this conversation into riverflow (e.g. "save to riverflow", "capture this into riverflow", "/rv:recap"). Scans the conversation, selects the candidates worth keeping, writes the files to riverflow spec, updates the Decision Log + the wiki.
 ---
 
-# riverflow-capture
+# rv:recap
 
 Turns the **worth-keeping** decisions and ways-of-working in the current session into durable
 riverflow artifacts — **auto-selects a recommendation and writes it immediately** (without asking
@@ -17,7 +17,7 @@ This skill is the **trigger mechanism** for that principle.
 ## When to use
 
 Canonical trigger: the prefix **`rv:recap`** (optionally followed by a part). Also fires on
-natural phrasing — "save to riverflow", "capture this into riverflow", "/riverflow-capture". Do NOT
+natural phrasing — "save to riverflow", "capture this into riverflow", "/rv:recap". Do NOT
 run automatically at the end of every session — only run when triggered.
 
 ## What to recap (route from the prefix)

@@ -3,7 +3,7 @@
 - **Status:** accepted
 - **Date:** 2026-06-09
 - **Decided by:** philo (human)
-- **Related:** [docs/wiki/versioning.md](../wiki/versioning.md), `riverflow-update` skill, [04-conventions](../framework/04-conventions.md)
+- **Related:** [docs/wiki/versioning.md](../wiki/versioning.md), `rv:update-version` skill, [04-conventions](../framework/04-conventions.md)
 
 ## Context
 

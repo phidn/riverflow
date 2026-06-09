@@ -25,7 +25,7 @@ Decision: [ADR-0003](../decisions/0003-self-versioning-and-update-check.md).
 - **MINOR** — a new artifact type / skill / template / framework doc, backward compatible.
 - **PATCH** — wording/clarification/typo, no behavior change.
 
-## The update check (`riverflow-update` skill)
+## The update check (`rv:update-version` skill)
 
 Flow: find local `VERSION` → shallow `git clone` upstream into a temp dir → read its `VERSION` →
 `sort -V` semver compare → show the changelog delta → on confirmation, copy framework + templates
