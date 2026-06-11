@@ -11,6 +11,46 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.4.0] — 2026-06-11
+
+### Added
+- **`rv:brainstorm` skill** (shipped on install, third consumer skill) — the lifecycle's front
+  door: `rv:brainstorm <topic>` recalls what the repo already knows (wiki/ADRs/plans/backlogs),
+  runs intake, facilitates an options brainstorm with the human, and crystallizes a **`draft`
+  plan** for the human to flip to `approved`. Front half of the loop (*brainstorm → log plan*);
+  `rv:recap` remains the back half. → [plan-0002](../plans/0002-rv-brainstorm-skill.md)
+- An installed repo picking this up gets the new skill via the `rv:update-version` copy step
+  (the copy list now includes `.claude/skills/rv:brainstorm/`).
+
+## [0.3.0] — 2026-06-11
+
+> **Breaking** (pre-1.0, breaking lands in MINOR): the artifact catalog is consolidated around
+> `plan`. Migration for an installed repo: `git mv docs/specs docs/plans`, replace
+> `docs/templates/spec.md` + `docs/templates/task.md` with the new `docs/templates/plan.md`,
+> and use `source_plans` in new wiki pages. Existing frozen artifacts need no rewrite.
+
+### Changed
+- **`spec` → `plan`** (`docs/specs/` → `docs/plans/`, template `spec.md` → `plan.md`). The name
+  now matches the artifact's lifecycle (intent of one change, frozen after ship) and the real
+  loop: *brainstorm → log plan → review plan → implement → recap*. `product-brief` lives in
+  `docs/plans/` too. → [ADR-0004](../decisions/0004-plan-artifact-consolidation.md)
+- **The plan absorbs the technical design and the work breakdown** — new sections: `Technical
+  design`, `Decisions` (choices local to the change, with a promotion rule to ADR), and
+  `Implementation steps` (a checkbox list a later session can resume mid-plan).
+- **Plan status is the review gate:** `draft → approved → done`. Lane `normal`+ requires a
+  human-approved plan before implementation (lifecycle phase 2 is now *Plan*).
+- **ADR bar raised:** an ADR is only for a choice that **outlives one change** ("would anyone
+  need to look this up six months from now, on other work?"); change-local choices live inline
+  in the plan's Decisions section.
+- **Stories are explicitly optional by lane** (`tiny` needs none); the story remains the
+  demand-side tracking unit, the plan the supply side.
+- `rv:recap` recaps `plan`/`story` (trigger `rv:recap plan`; `rv:recap spec` kept as a
+  deprecated alias). Wiki frontmatter `source_specs` → `source_plans`.
+
+### Removed
+- **The `task` artifact type** (`docs/templates/task.md`). The plan's Implementation steps
+  checklist is the work breakdown; externally tracked work links its Jira key from the plan.
+
 ## [0.2.0] — 2026-06-09
 
 ### Added

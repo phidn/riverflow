@@ -2,14 +2,14 @@
 topic: <slug>                      # topic/capability, e.g. rbac, billing, auth
 updated: YYYY-MM-DD                 # last time this page was edited
 verified_against_code: YYYY-MM-DD   # last time the content was checked against real code
-source_specs: []                   # specs that fed this page: [spec-0007, spec-0012]
+source_plans: []                   # plans that fed this page: [plan-0007, plan-0012]
 related_adrs: []                   # foundational ADRs: [ADR-0004]
 ---
 
 # Wiki: <capability name>
 
 > A **living** as-built page: it describes how this capability *currently* works, not how it
-> *should* work (that lives in the spec). Each ship touching this capability **overwrites it in
+> *should* work (that lives in the plan). Each ship touching this capability **overwrites it in
 > place** here. The frontmatter is the freshness signal — a stale `verified_against_code` means treat with suspicion.
 
 ## Summary

@@ -44,21 +44,21 @@ Docs, renames, copy, narrow fixes, low risk.
 
 ### normal
 Story-sized behavior, bounded blast radius.
-→ Create a story, link the spec/product docs, fill the proof table, do the thinnest slice.
-The human approves only if it touches something hard to reverse.
+→ Write a plan (or a story pointing to one), get the plan `approved`, fill the proof table,
+do the thinnest slice. The human approves only the plan — and anything hard to reverse.
 
 ### high-risk
 Security, data, broad scope, public contract, multi-role/multi-platform.
-→ **Human confirms before you act.** A full story + an ADR if there is a big choice +
-proof to full depth. Detailed worklog (with in-place decisions and friction).
+→ **Human confirms before you act.** A full plan + story + an ADR if there is a choice that
+outlives the change + proof to full depth. Detailed worklog (with in-place decisions and friction).
 
 ## Lane → requirements
 
 | Lane | Artifact first | Human approves first? | Minimum proof | Worklog |
 | --- | --- | --- | --- | --- |
 | tiny | none | no | quick check | minimal |
-| normal | story + proof table | only if hard to reverse | unit / integration | standard |
-| high-risk | story + ADR + proof | yes | + e2e / platform | detailed |
+| normal | plan (approved) + proof table | the plan; more only if hard to reverse | unit / integration | standard |
+| high-risk | plan + story + ADR + proof | yes | + e2e / platform | detailed |
 
 > Record the lane in the worklog frontmatter and in the **Lane** field of the story, so you
 > can later grep which work was at which risk level.

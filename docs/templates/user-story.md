@@ -2,7 +2,7 @@
 
 - **Status:** draft | ready | in progress | done
 - **Lane:** tiny | normal | high-risk  (see [framework/05-risk.md](../framework/05-risk.md))
-- **Related spec:** <link>
+- **Related plan:** <link>
 - **Priority:** high | medium | low
 
 ## Story

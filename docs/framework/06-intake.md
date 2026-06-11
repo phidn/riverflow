@@ -25,7 +25,7 @@ becomes visible on every turn, instead of quietly slipping past once.
 Request
   → Classify the input (Input Type)
   → Restate it as a work item
-  → Read the relevant topic wiki (docs/wiki/<topic>.md) + story / ADR
+  → Read the relevant topic wiki (docs/wiki/<topic>.md) + plan / story / ADR
   → Run the risk checklist (05-risk)
   → Pick a lane
   → Read out the Output block
@@ -38,15 +38,15 @@ question: which artifact does this **land on**. Two independent axes — choose 
 
 | Type | When | Typical artifact |
 | --- | --- | --- |
-| New brief | a new large product/feature goal | `product-brief` → story/ADR |
-| Story slice | implementing part of already-agreed behavior | `user-story` |
-| Change request | fix / change / tune existing behavior | `story` **or** a direct patch |
-| New initiative | a large area needing many stories | a thin `spec` (index) + many stories |
-| Maintenance | technical / dependency / operational change | `story` / `worklog` / `ADR` |
+| New brief | a new large product/feature goal | `product-brief` → plan/story/ADR |
+| Story slice | implementing part of already-agreed behavior | `user-story` (under an approved `plan`) |
+| Change request | fix / change / tune existing behavior | `plan` **or** a direct patch |
+| New initiative | a large area needing many stories | a thin `plan` (index) + many stories |
+| Maintenance | technical / dependency / operational change | `plan` / `worklog` / `ADR` |
 | Framework improvement | changes how human↔agent collaborate | update the framework + `worklog` |
 
-> Don't build one giant monolithic spec. The living surface is story + ADR + (when needed) a
-> **thin spec** as an index. A thin spec only answers "what does the feature do end-to-end +
+> Don't build one giant monolithic plan. The living surface is story + ADR + (when needed) a
+> **thin plan** as an index. A thin plan only answers "what does the feature do end-to-end +
 > what is done + the proof table", with most of the content gathered from existing ADRs/worklogs.
 
 ## Catching emergence
@@ -56,14 +56,14 @@ let's try it" looks exactly like a small change-request. Intake does **not** try
 The mechanism is **repeated visibility**: intake runs again on every request, and the Output
 block forces the `Story` line to be restated. The hard rule:
 
-> When the **second** request touches the same topic and there is still no story/spec → stop,
-> propose an initiative (a thin spec + story). When a chunk of work spans **≥2 sessions** → it is
+> When the **second** request touches the same topic and there is still no story/plan → stop,
+> propose an initiative (a thin plan + story). When a chunk of work spans **≥2 sessions** → it is
 > real, it needs a home.
 
 One question instead of the whole old gate:
 
 > **"Can I answer *is this done yet* by myself, without reading the code?"**
-> Answer "no" → you need a story/spec, no matter which session you're in.
+> Answer "no" → you need a story/plan, no matter which session you're in.
 
 When real-but-not-yet work appears (a good idea mid-session, a "still open" you won't do now, a
 request outside the current scope) → write a **backlog item** (`docs/backlogs/`, see
@@ -78,7 +78,7 @@ Before editing code/artifacts, the agent reads out this block:
 ```
 Lane:   normal
 Type:   change request
-Docs:   spec-0002, ADR-0004
+Docs:   plan-0002, ADR-0004
 Wiki:   docs/wiki/rbac.md (read first; update on ship)
 Story:  docs/stories/0003-... (or: none yet → propose creating | not needed — tiny patch)
 Proof:  unit + integration
@@ -98,8 +98,8 @@ recording → "not needed".
 | Lane | Output | Human approves first? |
 | --- | --- | --- |
 | tiny | a concise Output block; patch directly | no |
-| normal | + a story named / proposed + a proof table | only if hard to reverse |
-| high-risk | + an ADR if there is a big choice + human confirmation before acting | yes |
+| normal | + a plan named / proposed (approved before implementing) + a proof table | the plan; more only if hard to reverse |
+| high-risk | + an ADR if there is a choice that outlives the change + human confirmation before acting | yes |
 
 ## Closing the loop with the worklog
 

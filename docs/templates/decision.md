@@ -3,7 +3,10 @@
 - **Status:** proposed | accepted | superseded by ADR-NNNN
 - **Date:** YYYY-MM-DD
 - **Decided by:** <name> (a human approves hard-to-reverse decisions)
-- **Related:** <link to story/spec/ADR>
+- **Related:** <link to story/plan/ADR>
+
+> An ADR is for a choice that **outlives one change** — a later plan would need to look it up.
+> A choice local to one change belongs in that plan's **Decisions** section instead.
 
 ## Context
 

@@ -25,6 +25,7 @@ riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
 ├── .claude/skills/        # Claude Code skills
+│   ├── rv:brainstorm/     # /rv:brainstorm — enter the lifecycle: brainstorm a problem → draft plan    (shipped on install)
 │   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts   (shipped on install)
 │   ├── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → update (shipped on install)
 │   └── rv:release/        # /rv:release — bump the core version + CHANGELOG  (CORE-ONLY, NOT installed)
@@ -34,25 +35,24 @@ riverflow/
     │   ├── CHANGELOG.md       # what changed per version (the update check reads this)
     │   ├── 00-overview.md     # philosophy + the human ↔ agent collaboration model
     │   ├── 01-roles.md        # roles & responsibility boundaries, human / agent
-    │   ├── 02-lifecycle.md    # phases: discovery → spec → decision → build → review → ship
+    │   ├── 02-lifecycle.md    # phases: discovery → plan → decision → build → review → ship
     │   ├── 03-artifacts.md    # catalog of document types & when to create which
     │   ├── 04-conventions.md  # naming, storage location, handoff protocol, worklog frontmatter
     │   ├── 05-risk.md         # risk lanes (tiny/normal/high-risk) + hard gates
     │   └── 06-intake.md       # input classification gate + the Output block before editing
     ├── templates/             # template for each document type
-    │   ├── decision.md        # ADR — Decision Record
+    │   ├── decision.md        # ADR — Decision Record (choices that outlive one change)
     │   ├── user-story.md      # story + acceptance criteria
     │   ├── product-brief.md   # problem, goals, non-goals, metrics
-    │   ├── spec.md            # PRD / spec for one change
+    │   ├── plan.md            # technical design doc of one change: flows + design + decisions + steps
     │   ├── wiki.md            # living as-built record of a capability (by topic)
-    │   ├── task.md            # work item (links to Jira)
-    │   ├── backlog.md         # deliberately deferred work — picked up later as story/spec/task
+    │   ├── backlog.md         # deliberately deferred work — picked up later as story/plan
     │   ├── worklog.md         # an agent's session log
     │   └── retro.md           # review / lessons learned
     └── (real instances — living examples)
         ├── decisions/
         ├── stories/
-        ├── specs/
+        ├── plans/
         ├── wiki/
         ├── backlogs/
         └── worklogs/
@@ -65,13 +65,14 @@ The simplest way to add riverflow to a project: paste this prompt to Claude (in 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir, then set my project up to
 follow riverflow: copy its `docs/framework/` and `docs/templates/` into my repo, copy
-its `.claude/skills/rv:recap/` and `.claude/skills/rv:update-version/` skills
-into my `.claude/skills/`, add an `AGENTS.md` based on riverflow's, and create the
-empty `docs/{decisions,stories,specs,wiki,backlogs,worklogs}/` folders. Read
+its `.claude/skills/rv:brainstorm/`, `.claude/skills/rv:recap/` and
+`.claude/skills/rv:update-version/` skills into my `.claude/skills/`, add an
+`AGENTS.md` based on riverflow's, and create the empty
+`docs/{decisions,stories,plans,wiki,backlogs,worklogs}/` folders. Read
 riverflow's README + AGENTS.md first, then summarize the conventions back to me.
 ```
 
-Claude reads the framework, copies the conventions, templates, and the `rv:recap` + `rv:update-version` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
+Claude reads the framework, copies the conventions, templates, and the `rv:brainstorm` + `rv:recap` + `rv:update-version` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
 
 ### Migrate from coflow
 
@@ -82,24 +83,28 @@ Clone https://github.com/phidn/riverflow into a temp dir. My project currently
 follows coflow — migrate it to riverflow. Replace `docs/framework/` and
 `docs/templates/` with riverflow's (this adds `docs/framework/VERSION` +
 `CHANGELOG.md` — the self-versioning layer coflow lacked). Copy its
-`.claude/skills/rv:recap/` and `.claude/skills/rv:update-version/` into my
-`.claude/skills/`, then delete the old `skills/coflow-capture/` (`rv:recap` is its
-successor). Replace `AGENTS.md` with riverflow's, and re-point the `CLAUDE.md`
-symlink at it if one exists. DO NOT touch anything under
-`docs/{decisions,stories,specs,wiki,backlogs,worklogs}/` — those are my own
-artifacts and must survive the migration unchanged. Read riverflow's README +
-AGENTS.md first, then summarize what changed (skills renamed, versioning added,
-AGENTS.md swapped) back to me.
+`.claude/skills/rv:brainstorm/`, `.claude/skills/rv:recap/` and
+`.claude/skills/rv:update-version/` into my `.claude/skills/`, then delete the
+old `skills/coflow-capture/` (`rv:recap` is its successor). Replace `AGENTS.md`
+with riverflow's, and re-point the `CLAUDE.md` symlink at it if one exists.
+If I have a `docs/specs/` directory, `git mv docs/specs docs/plans` (riverflow
+0.3.0 renamed the artifact — only the directory name changes) and remove the
+stale `docs/templates/{spec,task}.md`. Other than that rename, DO NOT touch
+anything under `docs/{decisions,stories,plans,wiki,backlogs,worklogs}/` — those
+are my own artifacts and must survive the migration unchanged. Read riverflow's
+README + AGENTS.md first, then summarize what changed (skills renamed,
+versioning added, spec→plan rename, AGENTS.md swapped) back to me.
 ```
 
-What moves: the framework/templates get the upstream version with `VERSION` + `CHANGELOG`, the capture skill `coflow-capture` is replaced by `rv:recap` (plus the new `rv:update-version` check), and `AGENTS.md` is refreshed. What stays put: every file under `docs/decisions/`, `docs/stories/`, `docs/specs/`, `docs/wiki/`, `docs/backlogs/`, and `docs/worklogs/` — your real work is never overwritten. After migrating, run `/rv:update-version` anytime to stay current.
+What moves: the framework/templates get the upstream version with `VERSION` + `CHANGELOG`, the capture skill `coflow-capture` is replaced by `rv:recap` (plus the new `rv:brainstorm` + `rv:update-version`), `docs/specs/` is renamed to `docs/plans/` (contents untouched), and `AGENTS.md` is refreshed. What stays put: every file under `docs/decisions/`, `docs/stories/`, `docs/plans/`, `docs/wiki/`, `docs/backlogs/`, and `docs/worklogs/` — your real work is never overwritten. After migrating, run `/rv:update-version` anytime to stay current.
 
 ## How to use it
 
 1. Read `docs/framework/00-overview.md` to get the model.
-2. When you start a new product/feature, copy the matching template from `docs/templates/` into `docs/<type>/`.
+2. When you start a new product/feature, type **`/rv:brainstorm <topic>`** — it walks the problem into the lifecycle (context recall → intake → options) and ends in a `draft` plan for you to approve. Or copy the matching template from `docs/templates/` into `docs/<type>/` by hand.
 3. Name files per `docs/framework/04-conventions.md`.
 4. Agents read `AGENTS.md` before creating or editing any artifact.
+5. At the end of a working session, **`/rv:recap`** crystallizes what happened back into `docs/` (plan/story if emergent, ADR, worklog, wiki). The two skills are the two halves of the loop: *brainstorm → log plan → review plan → implement → recap*.
 
 ## Versioning & updates
 
