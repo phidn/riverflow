@@ -10,6 +10,15 @@ Rules for agents working in a product that applies riverflow.
 - Before choosing a technical direction that has multiple options, check: is there a `decision` (ADR) already? If not and the choice matters, create an ADR.
 - Language: write artifacts in English. (If your project operates in another language, use it with correct orthography — never a lossy unaccented form.)
 
+## Language
+
+- Chat: follow `COMMUNICATE` in `.env` (`vi` = Vietnamese default,
+  `en` = English; default `en` if unset). Chat reply language only.
+  If the user writes in the other language, mirror them for that exchange.
+- Artifacts: generated code, code comments, committed Markdown docs, and
+  generated `SKILL.md` default to English regardless of `COMMUNICATE`
+  — more portable and professional.
+
 ## When to create which artifact
 
 | Situation | Artifact | Stored in |

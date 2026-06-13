@@ -11,6 +11,17 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.3.0] — 2026-06-13
+
+### Added
+- **Language convention in `AGENTS.md`.** A new "Language" section splits chat language (follow
+  `COMMUNICATE` in `.env` — `vi`/`en`, mirror the user) from artifact language (code, comments,
+  committed Markdown, `SKILL.md` default to English). Installs picking up this version inherit the
+  rule; add a `.env` with `COMMUNICATE=` (gitignored) to set the chat language per project.
+- **coflow → riverflow migration guide** at [`docs/wiki/coflow_migration.md`](../wiki/coflow_migration.md)
+  — a paste-ready prompt that upgrades a coflow repo in place (framework/templates/skills + versioning)
+  while leaving every `docs/` artifact untouched. The README links to it instead of inlining the prompt.
+
 ## [0.2.0] — 2026-06-09
 
 ### Added
