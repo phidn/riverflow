@@ -9,8 +9,9 @@ description: CORE-MAINTAINER ONLY — cut a new riverflow framework version. Bum
 riverflow **core** repo, never in a project that merely installs riverflow. It is the counterpart
 to `rv:update-version` (which is the *consumer* side: pull the latest into an install).
 
-> Not shipped on install. The install prompt and `rv:update-version` copy only `rv:recap` and
-> `rv:update-version`. This skill is deliberately excluded — keep it that way (see "Boundaries").
+> Not shipped on install. The install prompt and `rv:update-version` copy only `rv:recap`,
+> `rv:brainstorm`, and `rv:update-version`. This skill is deliberately excluded — keep it that
+> way (see "Boundaries").
 
 ## When to use
 
@@ -65,8 +66,8 @@ user this skill is core-only — they probably want `rv:update-version` instead.
 ## Boundaries
 
 - **Core-only, never installed.** Do not add `rv:release` to the README install prompt or to the
-  copy list in `rv:update-version`. Those propagate only `rv:recap` + `rv:update-version`. If you
-  ever extend the update/install copy logic, keep `rv:release` out of it.
+  copy list in `rv:update-version`. Those propagate only `rv:recap` + `rv:brainstorm` +
+  `rv:update-version`. If you ever extend the update/install copy logic, keep `rv:release` out of it.
 - Bump **only** in the core repo (step 1). Never bump `VERSION` in an installed/host repo.
 - VERSION and CHANGELOG move together — never bump one without the other, or the consumer-side
   `rv:update-version` check will show a number with no explanation.

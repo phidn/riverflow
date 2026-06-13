@@ -7,13 +7,13 @@ riverflow treats humans and agents as two collaborating roles. Each role owns di
 - **Intent.** Who this product serves, what problem it solves, what success looks like.
 - **Priority.** What to do first, what to drop.
 - **Irreversible decisions.** Choosing a platform, changing the data model, committing a public API, spending money, touching real data or external systems.
-- **Final approval.** Accepting an ADR, accepting a spec, merging a large change.
+- **Final approval.** Accepting an ADR, approving a plan, merging a large change.
 
 ## The agent owns
 
 - **Execution.** Writing code, writing tests, refactoring, scaffolding, drafting documents.
 - **Proposals.** Offering options with their trade-offs; suggesting an ADR when it sees a big choice being made without one being recorded.
-- **Spotting gaps.** "This requirement has no spec", "this decision conflicts with ADR-0007".
+- **Spotting gaps.** "This requirement has no plan", "this decision conflicts with ADR-0007".
 - **Maintaining artifacts.** Creating and updating worklogs, drafting user stories, writing ADRs at the human's direction.
 
 ## The grey zone: agent proposes, human approves
@@ -30,7 +30,7 @@ For things that are **hard to reverse or expensive to undo**, the agent **stops 
 ## Handoff rules
 
 - When the agent finishes a chunk of work → leave a `worklog`: what was done, why, what is still open. The human (or a later agent session) reads the worklog and continues.
-- When the human assigns new work → point to the relevant story/spec, or ask the agent to create one if it doesn't exist.
+- When the human assigns new work → point to the relevant story/plan, or ask the agent to create one if it doesn't exist.
 - When the artifact and the conversation disagree → the artifact wins, unless the human actively updates the artifact.
 
 ## One line to remember

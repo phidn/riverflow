@@ -81,14 +81,21 @@ Update now? (copies framework + templates + skills; leaves your docs/ instances 
 
 Updating is the irreversible part. **Ask first; do not auto-apply.** When the user confirms, copy
 **only** the framework, templates, and shipped skills from `$TMP` — never the example instances
-(`docs/decisions/`, `docs/stories/`, `docs/specs/`, `docs/wiki/`, `docs/backlogs/`,
-`docs/worklogs/`), which hold the user's own work.
+(`docs/decisions/`, `docs/stories/`, `docs/plans/` — or `docs/specs/` in a pre-0.3.0 install —
+`docs/wiki/`, `docs/backlogs/`, `docs/worklogs/`), which hold the user's own work.
+
+> Crossing 0.3.0: the framework renamed `spec` → `plan` (`docs/specs/` → `docs/plans/`, template
+> `spec.md` → `plan.md`) and dropped the `task` type. After copying, point the migration out and
+> offer to `git mv docs/specs docs/plans` and remove the stale `docs/templates/{spec,task}.md` —
+> only with the user's confirmation, since it touches their instances. See the 0.3.0 CHANGELOG
+> entry for the full migration note.
 
 ```bash
 # standard install layout — adjust the dest prefix for an embedded layout
 cp -R "$TMP/docs/framework/."            docs/framework/
 cp -R "$TMP/docs/templates/."            docs/templates/
 cp -R "$TMP/.claude/skills/rv:recap/."          ".claude/skills/rv:recap/"
+cp -R "$TMP/.claude/skills/rv:brainstorm/."     ".claude/skills/rv:brainstorm/"
 cp -R "$TMP/.claude/skills/rv:update-version/." ".claude/skills/rv:update-version/"
 ```
 
