@@ -12,12 +12,8 @@ Rules for agents working in a product that applies riverflow.
 
 ## Language
 
-- Chat: follow `COMMUNICATE` in `.env` (`vi` = Vietnamese default,
-  `en` = English; default `en` if unset). Chat reply language only.
-  If the user writes in the other language, mirror them for that exchange.
-- Artifacts: generated code, code comments, committed Markdown docs, and
-  generated `SKILL.md` default to English regardless of `COMMUNICATE`
-  — more portable and professional.
+- Chat: English by default. Set `COMMUNICATE=vi` in `.env` for Vietnamese. If the user writes in another language, mirror them for that exchange.
+- Artifacts (code, comments, Markdown docs, `SKILL.md`): always English, regardless of `COMMUNICATE`.
 
 ## When to create which artifact
 
