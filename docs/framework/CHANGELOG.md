@@ -11,6 +11,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.5.1] — 2026-06-14
+
+### Changed
+- **Language convention now defaults to English.** The `AGENTS.md` "Language" section is simplified:
+  chat replies are English by default (set `COMMUNICATE=vi` in `.env` for Vietnamese), and artifacts
+  (code, comments, Markdown docs, `SKILL.md`) are always English. Mirror the user if they write in
+  another language. No structural change — installs picking this up just get the clearer wording and
+  the English default.
+
 ## [0.5.0] — 2026-06-13
 
 ### Added
