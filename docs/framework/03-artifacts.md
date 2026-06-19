@@ -1,6 +1,6 @@
 # 03 — Artifacts
 
-The catalog of riverflow's standard document types. Each type exists to answer one specific future question. The matching template lives in `docs/templates/`.
+The catalog of riverflow's standard document types. Each type exists to answer one specific future question. The matching template lives in `docs/framework/templates/`.
 
 ## Summary table
 

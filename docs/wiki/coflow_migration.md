@@ -4,8 +4,10 @@ Already on **coflow** (riverflow's predecessor)? Paste this prompt — it upgrad
 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir. My project currently
-follows coflow — migrate it to riverflow. Replace `docs/framework/` and
-`docs/templates/` with riverflow's (this adds `docs/framework/VERSION` +
+follows coflow — migrate it to riverflow. Replace `docs/framework/` with
+riverflow's — templates now live *inside* it at `docs/framework/templates/`, so
+also delete the old top-level `docs/templates/` directory (it is obsolete; this
+also adds `docs/framework/VERSION` +
 `CHANGELOG.md` — the self-versioning layer coflow lacked). Copy its
 `.claude/skills/rv:recap/` and `.claude/skills/rv:update-version/` into my
 `.claude/skills/`, then delete the old `skills/coflow-capture/` (`rv:recap` is its

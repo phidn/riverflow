@@ -3,7 +3,7 @@
 - **Status:** accepted
 - **Date:** 2026-06-07
 - **Decided by:** philoha
-- **Related:** [03-artifacts](../framework/03-artifacts.md), [04-conventions](../framework/04-conventions.md), [06-intake](../framework/06-intake.md), [templates/backlog.md](../templates/backlog.md)
+- **Related:** [03-artifacts](../framework/03-artifacts.md), [04-conventions](../framework/04-conventions.md), [06-intake](../framework/06-intake.md), [templates/backlog.md](../framework/templates/backlog.md)
 
 ## Context
 

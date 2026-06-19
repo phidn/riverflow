@@ -10,7 +10,7 @@ Walks a problem **into** the riverflow lifecycle: recall what already exists, cl
 review. It is the front half of the loop — *brainstorm → log plan → review plan → implement →
 recap* — and the counterpart of `rv:recap` (which crystallizes at the end of emergent work).
 
-Source framework: the riverflow repo (`docs/framework/`, `docs/templates/`).
+Source framework: the riverflow repo (`docs/framework/`, templates in `docs/framework/templates/`).
 Key principle here: **reviewing a plan is cheaper than reviewing a diff** — this skill exists to
 put a reviewable plan in front of the human before any code is written.
 
@@ -25,7 +25,7 @@ put a reviewable plan in front of the human before any code is written.
 
 ### 1. Detect the repo layout
 Same detection as `rv:recap`: standard riverflow (`docs/plans/`, `docs/decisions/`,
-`docs/stories/`, `docs/wiki/`, templates in `docs/templates/`) or embedded (root-level dirs +
+`docs/stories/`, `docs/wiki/`, templates in `docs/framework/templates/`) or embedded (root-level dirs +
 `decisions.md` router). A pre-0.3.0 install may have `specs/` — treat it as the plans directory
 and note the rename. No layout at all → ask whether to initialize riverflow first.
 
@@ -58,7 +58,7 @@ This is a conversation, not a monologue. Work through, asking the human **focuse
 at a time** (don't interrogate with a wall of questions):
 
 1. **Problem first.** What hurts, for whom, why now? What does success look like? (If this turns
-   out to be a large new product goal, draft a `product-brief` from `docs/templates/product-brief.md`
+   out to be a large new product goal, draft a `product-brief` from `docs/framework/templates/product-brief.md`
    instead of — or before — a plan, and say so.)
 2. **Options.** Generate 2–3 genuinely different directions with pros/cons — not one option and
    two strawmen. Anchor each against the recall from step 2.
@@ -75,7 +75,7 @@ When the direction is confirmed, write the artifacts (English, or another langua
 orthography):
 
 - **Plan** (always, unless step 3 exited): next NNNN in the plans directory,
-  `<NNNN>-<slug>.md` from `docs/templates/plan.md`. **Status: `draft`** — never higher. Fill:
+  `<NNNN>-<slug>.md` from `docs/framework/templates/plan.md`. **Status: `draft`** — never higher. Fill:
   Summary, Main flow, Edge cases, Constraints, **Technical design** (deep enough to review the
   direction — affected modules, data changes, sequencing), **Decisions** (from step 4, with the
   promotion rule in mind), **Implementation steps** (unticked checklist, resumable), Acceptance

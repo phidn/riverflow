@@ -10,7 +10,7 @@ durable riverflow artifacts — **auto-selects a recommendation and writes it im
 asking first), but still **selectively**, not blindly. If the user wants it different, they'll say
 so and you adjust afterward.
 
-Source framework: the riverflow repo (see `docs/framework/` and `docs/templates/`).
+Source framework: the riverflow repo (see `docs/framework/`, templates in `docs/framework/templates/`).
 riverflow principle: *every important decision leaves a trace readable by both humans and agents.*
 This skill is the **trigger mechanism** for that principle.
 
@@ -76,9 +76,9 @@ The remaining riverflow types (brief/retro) are NOT part of this skill.
 riverflow has two install shapes; auto-detect the target directory:
 
 - **Project repo (standard riverflow):** `docs/decisions/`, `docs/worklogs/`, `docs/plans/`,
-  `docs/stories/`, templates in `docs/templates/`.
+  `docs/stories/`, templates in `docs/framework/templates/`.
 - **Embedded install:** `decisions/`, `worklogs/`, `plans/`, `stories/` at the root, a
-  `decisions.md` router, templates in `templates/`.
+  `decisions.md` router, templates in `framework/templates/`.
 
 Detect in order: if there is a `decisions.md` at the root → embedded layout (`decisions/` +
 `worklogs/` + `wiki/` + `plans/` + `stories/`). If there is a `docs/decisions/` → standard
@@ -88,7 +88,7 @@ rename to the user. If neither directory exists → ask the user whether they wa
 decisions layer before continuing. Find the `plan.md` / `user-story.md` / `decision.md` /
 `worklog.md` / `wiki.md` templates in the repo's templates directory (an older install may have
 `spec.md` — use it the same way); if missing, take them from the riverflow repo's
-`docs/templates/`.
+`docs/framework/templates/`.
 
 ### 2. Scan the conversation → list candidates
 Re-read the current session and extract:

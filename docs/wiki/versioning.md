@@ -1,7 +1,7 @@
 ---
 topic: versioning
-updated: 2026-06-09
-verified_against_code: 2026-06-09
+updated: 2026-06-19
+verified_against_code: 2026-06-19
 ---
 
 # Versioning & updates
@@ -28,8 +28,9 @@ Decision: [ADR-0003](../decisions/0003-self-versioning-and-update-check.md).
 ## The update check (`rv:update-version` skill)
 
 Flow: find local `VERSION` → shallow `git clone` upstream into a temp dir → read its `VERSION` →
-`sort -V` semver compare → show the changelog delta → on confirmation, copy framework + templates
-+ skills over (never the user's `docs/` instances) → delete the temp dir.
+`sort -V` semver compare → show the changelog delta → on confirmation, copy framework (templates
+ride inside it at `docs/framework/templates/`) + skills over (never the user's `docs/` instances),
+relocating an old install's orphaned `docs/templates/` → delete the temp dir.
 
 - Local version is searched at `docs/framework/VERSION`, then `framework/VERSION`, then `VERSION`
   (standard + embedded install shapes). Missing → treated as `0.0.0` (pre-versioning install).

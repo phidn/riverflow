@@ -1,6 +1,6 @@
 ---
 name: rv:update-version
-description: Check whether the installed riverflow framework is out of date against the latest on GitHub, and offer to update. Canonical trigger is the prefix "rv:update-version". Clones https://github.com/phidn/riverflow into a temp dir, reads its docs/framework/VERSION, semver-compares it with the version installed in this repo, shows the changelog delta, and — only if the user confirms — copies the newer framework/templates/skills over (never touching the user's own docs instances). Use when the user types "rv:update-version" or otherwise asks to check/apply riverflow updates (e.g. "is riverflow up to date?", "update riverflow", "/rv:update-version").
+description: Check whether the installed riverflow framework is out of date against the latest on GitHub, and offer to update. Canonical trigger is the prefix "rv:update-version". Clones https://github.com/phidn/riverflow into a temp dir, reads its docs/framework/VERSION, semver-compares it with the version installed in this repo, shows the changelog delta, and — only if the user confirms — copies the newer framework (templates included) and skills over (never touching the user's own docs instances). Use when the user types "rv:update-version" or otherwise asks to check/apply riverflow updates (e.g. "is riverflow up to date?", "update riverflow", "/rv:update-version").
 ---
 
 # rv:update-version
@@ -80,7 +80,8 @@ Update now? (copies framework + templates + skills; leaves your docs/ instances 
 ### 4. Apply the update — only on explicit confirmation
 
 Updating is the irreversible part. **Ask first; do not auto-apply.** When the user confirms, copy
-**only** the framework, templates, and shipped skills from `$TMP` — never the example instances
+**only** the framework (templates ride inside it at `docs/framework/templates/`) and the shipped
+skills from `$TMP` — never the example instances
 (`docs/decisions/`, `docs/stories/`, `docs/plans/` — or `docs/specs/` in a pre-0.3.0 install —
 `docs/wiki/`, `docs/backlogs/`, `docs/worklogs/`), which hold the user's own work.
 
@@ -90,17 +91,25 @@ Updating is the irreversible part. **Ask first; do not auto-apply.** When the us
 > only with the user's confirmation, since it touches their instances. See the 0.3.0 CHANGELOG
 > entry for the full migration note.
 
+> Crossing 0.6.0: templates moved from the top-level `docs/templates/` to `docs/framework/templates/`.
+> The copy below brings the new templates in *inside* `docs/framework/`, so the old top-level
+> `docs/templates/` is left orphaned — the cleanup line removes it. Templates are riverflow-owned
+> (the user copies but never authors them), so this is safe; only run it once, when the old dir
+> still exists.
+
 ```bash
 # standard install layout — adjust the dest prefix for an embedded layout
-cp -R "$TMP/docs/framework/."            docs/framework/
-cp -R "$TMP/docs/templates/."            docs/templates/
+cp -R "$TMP/docs/framework/."            docs/framework/   # templates ride along inside framework/templates/
 cp -R "$TMP/.claude/skills/rv:recap/."          ".claude/skills/rv:recap/"
 cp -R "$TMP/.claude/skills/rv:brainstorm/."     ".claude/skills/rv:brainstorm/"
 cp -R "$TMP/.claude/skills/rv:update-version/." ".claude/skills/rv:update-version/"
+
+# one-time relocation (crossing 0.6.0): the old top-level templates dir is now obsolete
+[ -d docs/templates ] && rm -rf docs/templates
 ```
 
-- This overwrites the framework docs, templates, and the riverflow skills (the parts the user does
-  not author) and bumps `docs/framework/VERSION` to `REMOTE` as a side effect of copying it.
+- This overwrites the framework docs (templates included) and the riverflow skills (the parts the
+  user does not author) and bumps `docs/framework/VERSION` to `REMOTE` as a side effect of copying it.
 - AGENTS.md: do **not** blindly overwrite — the host may have customized it. If the upstream
   AGENTS.md changed, tell the user and offer to show a diff rather than clobbering theirs.
 - If the changelog lists a **MAJOR** bump (a breaking convention change), call that out explicitly
@@ -121,7 +130,7 @@ a MAJOR migration) left for the user to handle. Offer to write a `worklog` recor
 
 - **Read-only check by default.** The version check never modifies anything; only step 4 writes,
   and only after the user confirms.
-- **Never overwrite the user's docs instances** — only framework/templates/skills are riverflow's
-  to update.
+- **Never overwrite the user's docs instances** — only the framework (templates included) and the
+  skills are riverflow's to update.
 - Always delete the temp clone, even on failure.
 - If `git` or the network is unavailable, say so plainly — do not fabricate a version.

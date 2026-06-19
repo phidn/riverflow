@@ -3,7 +3,7 @@
 - **Status:** accepted
 - **Date:** 2026-06-07
 - **Decided by:** philoha
-- **Related:** [03-artifacts](../framework/03-artifacts.md), [02-lifecycle](../framework/02-lifecycle.md), [04-conventions](../framework/04-conventions.md), [06-intake](../framework/06-intake.md), [templates/wiki.md](../templates/wiki.md), [templates/spec.md](../templates/spec.md)
+- **Related:** [03-artifacts](../framework/03-artifacts.md), [02-lifecycle](../framework/02-lifecycle.md), [04-conventions](../framework/04-conventions.md), [06-intake](../framework/06-intake.md), [templates/wiki.md](../framework/templates/wiki.md), [templates/spec.md](../templates/spec.md)
 
 ## Context
 

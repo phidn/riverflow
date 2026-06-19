@@ -11,6 +11,24 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.6.0] — 2026-06-19
+
+> **Breaking** (pre-1.0, breaking lands in MINOR): templates moved from the top-level
+> `docs/templates/` into `docs/framework/templates/`. Migration for an installed repo:
+> `git mv docs/templates docs/framework/templates` (or let `/rv:update-version` do it — its copy
+> step now brings templates in inside `docs/framework/` and removes the orphaned `docs/templates/`).
+> No artifact instances change; only the location of the blank templates moves.
+
+### Changed
+- **Templates nested under the framework** (`docs/templates/` → `docs/framework/templates/`). The
+  whole riverflow "core" (rules + the blank forms those rules define) now lives under one root, so
+  `docs/` carries a clean invariant: **`docs/framework/` = riverflow itself; everything else =
+  your artifacts.** Chosen as a nested subfolder (not flat `framework/template_*.md`) to keep the
+  prose-rules vs blank-form boundary. → [plan-0003](../plans/0003-nest-templates-under-framework.md)
+- **Install + `rv:update-version` copy collapses from two steps to one** — templates ride inside
+  `docs/framework/`, so copying the framework brings them along. `rv:update-version` gained a
+  one-time relocation step that removes an existing install's orphaned `docs/templates/`.
+
 ## [0.5.1] — 2026-06-14
 
 ### Changed
@@ -30,7 +48,6 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **coflow → riverflow migration guide** at [`docs/wiki/coflow_migration.md`](../wiki/coflow_migration.md)
   — a paste-ready prompt that upgrades a coflow repo in place (framework/templates/skills + versioning)
   while leaving every `docs/` artifact untouched. The README links to it instead of inlining the prompt.
-
 ## [0.4.0] — 2026-06-11
 
 ### Added

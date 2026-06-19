@@ -24,7 +24,7 @@ Artifacts are the shared source of truth. The chat is ephemeral; the file stays.
 
 1. **Model** — human and agent are two collaborating roles, not master and servant. The human owns *intent* and *irreversible decisions*; the agent owns *execution* and *proposals*. → `01-roles.md`
 2. **Lifecycle** — work flows through phases; each phase produces a characteristic artifact type. → `02-lifecycle.md`
-3. **Artifacts** — the standard set of document types and a template for each. → `03-artifacts.md`, `docs/templates/`
+3. **Artifacts** — the standard set of document types and a template for each. → `03-artifacts.md`, `docs/framework/templates/`
 
 ## Operating philosophy
 

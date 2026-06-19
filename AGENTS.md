@@ -37,7 +37,7 @@ Rules for agents working in a product that applies riverflow.
 3. **Plan before implementing.** For lane `normal`+, write the plan (technical design, local decisions, implementation steps) and get it `approved` by the human before coding — reviewing a plan is cheaper than reviewing a diff. Tick the plan's Implementation steps as you go.
 4. **Propose the missing artifact.** If a decision that outlives the change is being made in conversation with no ADR, say so and offer to record it.
 5. **Tie proof to "done".** For lane `normal`+, fill the Proof table in the story/plan — not done until there is verification evidence matching the lane.
-6. **Update the wiki on ship.** A change that touches a capability → overwrite `docs/wiki/<topic>.md` to match the as-built (mandatory, see phase 6 in `docs/framework/02-lifecycle.md`). If the topic has no page yet, create one from `docs/templates/wiki.md`.
+6. **Update the wiki on ship.** A change that touches a capability → overwrite `docs/wiki/<topic>.md` to match the as-built (mandatory, see phase 6 in `docs/framework/02-lifecycle.md`). If the topic has no page yet, create one from `docs/framework/templates/wiki.md`.
 7. **Write a worklog at session end.** When you finish a meaningful chunk of work, create a `worklog` with frontmatter (`lane`, `outcome`, `touched`, `files_changed`, `friction`) + a summary: what you did, why, what is still open.
 8. **Decision boundary.** Agents propose; humans approve the irreversible decisions (see `docs/framework/01-roles.md`).
 

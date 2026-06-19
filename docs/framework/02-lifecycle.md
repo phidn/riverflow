@@ -68,7 +68,7 @@ Verify against the plan; hunt for bugs, trade-offs, technical debt.
 Release and close the learning loop.
 
 - **Artifact:** `wiki` (update the as-built), `worklog` (ship note), `retro` (for a milestone)
-- **Agent:** before closing the session, **update `docs/wiki/<topic>.md`** for every capability this change touches — overwrite the current state, update `updated`/`verified_against_code`/`source_plans`. This is a **mandatory** step, not goodwill: a plan is the commitment of one change, the wiki is where current-state settles. If the topic has no page yet, create one from `docs/templates/wiki.md`.
+- **Agent:** before closing the session, **update `docs/wiki/<topic>.md`** for every capability this change touches — overwrite the current state, update `updated`/`verified_against_code`/`source_plans`. This is a **mandatory** step, not goodwill: a plan is the commitment of one change, the wiki is where current-state settles. If the topic has no page yet, create one from `docs/framework/templates/wiki.md`.
 - **Human + Agent:** write the retro together — what worked, what to fix next time.
 
 ## The loop
