@@ -9,6 +9,7 @@ Conventions for naming, storage, and the handoff protocol. Goal: anyone (human o
 | Decision (ADR) | `docs/decisions/` |
 | User Story | `docs/stories/` |
 | Plan / Brief | `docs/plans/` |
+| Roadmap | `docs/roadmap/` |
 | Wiki | `docs/wiki/` |
 | Worklog / Retro | `docs/worklogs/` |
 | Backlog | `docs/backlogs/` |
@@ -38,6 +39,8 @@ docs/worklogs/2026-05-30-scaffold-auth.md
 
 > Wiki uses `<topic-slug>.md` (`docs/wiki/rbac.md`), **not** numbered — it is looked up by topic, not read by timeline or creation order. One topic, one page, overwritten in place. The freshness signal lives in the frontmatter (`updated`, `verified_against_code`).
 
+> Roadmap uses `<product-slug>.md` (`docs/roadmap/riverflow.md`), **not** numbered — like the wiki, it is looked up by product and overwritten in place. One product, one page; most repos hold a single file. Its own directory (not a bare top-level file) keeps the "every artifact type has a `docs/<type>/` home" rule intact and lets a multi-product repo add files without migrating. Freshness lives in the frontmatter (`updated`, `progress`).
+
 ## ADR status
 
 Each ADR has a `Status:` line at the top:
@@ -56,7 +59,7 @@ Each plan has a `Status:` line at the top — it doubles as the review gate:
 
 ## Cross-linking
 
-- A plan links to the stories it implements and the ADRs it follows.
+- A plan links to the stories it implements and the ADRs it follows; if it advances a roadmap theme, it adds a `Serves:` line (→ the roadmap theme). The roadmap holds theme status as the single source of truth — the plan only back-links, so there is no two-place sync.
 - A worklog links to the story/plan the session touched.
 - When an ADR supersedes an old one, write `Supersedes: 00NN` on the new ADR and `Superseded by: 00NN` on the old one.
 

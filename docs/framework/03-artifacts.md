@@ -7,6 +7,7 @@ The catalog of riverflow's standard document types. Each type exists to answer o
 | Type | The question it answers | Template | Stored in |
 | --- | --- | --- | --- |
 | Product Brief | What problem do we solve, for whom, what is success? | `product-brief.md` | `docs/plans/` |
+| Roadmap | Where is the product heading, and how far along are we? | `roadmap.md` | `docs/roadmap/` |
 | User Story | What does the user need, and when is it done? | `user-story.md` | `docs/stories/` |
 | Plan | What does *this change* commit to, how is it built, what proof passes? | `plan.md` | `docs/plans/` |
 | Wiki | How does *this capability* work right now? | `wiki.md` | `docs/wiki/` |
@@ -22,6 +23,27 @@ The catalog of riverflow's standard document types. Each type exists to answer o
 
 ### Product Brief
 The opening document for a large product/feature. Minimum content: **problem, target user, goals, non-goals, success metrics**. Short — one page is enough. Non-goals matter as much as goals: they block scope creep. Stored alongside plans in `docs/plans/` — a brief is intent too, frozen once approved.
+
+### Roadmap
+The **living, forward-looking** document of one **product**: a stable north-star, the themes
+between here and it (`Now / Next / Later`, each with a status and the plans that serve it), and an
+honest **gap-to-vision** read. It is the product-level mirror of the wiki — where the wiki answers
+"how does this capability work *now*", the roadmap answers "where is the product *going*, and how
+far along are we". It is the **top-down source that refills the backlog**: when the backlog runs
+dry or the vision changes, diff the roadmap against the wiki and graduate new backlog items from
+the gap. **Optional by scale** (like a story is optional by lane): a single-feature product is
+served by its `product-brief`; a product spanning multiple themes across cycles needs a roadmap.
+Named by product slug (`docs/roadmap/<product>.md`), not numbered — looked up by product, not by
+timeline. **Overwritten in place**; the frontmatter (`updated`, `progress`) is the freshness
+signal, refreshed at the Ship gate when a theme's status changes. → [ADR-0005](../decisions/0005-product-roadmap-forward-layer.md).
+
+**The three product-touching documents** (separated by scope and time direction, not by metaphor):
+
+| | Product Brief | Roadmap | Wiki |
+| --- | --- | --- | --- |
+| Scope | one product/feature | one product | one topic/capability |
+| Answers | why we started (problem, goals, success) | where we're going + how far | how it works right now |
+| Lifecycle | frozen after approve | living, overwritten | living, overwritten |
 
 ### User Story
 A user need stated briefly, with **verifiable acceptance criteria**. The familiar format: *"As a <role>, I want <something>, so that <benefit>."* A story should be small enough to finish within one chunk of work. The story is the **demand side** (what is needed, is it done yet — it carries status, lane, priority); the plan is the **supply side** (how this change works). Stories are **optional by lane**: `tiny` work needs none; one plan may serve several stories.
@@ -73,6 +95,7 @@ Two concepts that cut across the artifacts, light enough not to need a new docum
 - If it only matters to the **current conversation** → don't create one.
 - If it is real work but **not up yet** → a backlog item; don't let it sit only in a worklog's "still open" and get forgotten.
 - If you are **making a choice that outlives this change** → an ADR, right then. A choice local to the change → the plan's **Decisions** section.
+- When in doubt between brief and roadmap: brief = *why we started (frozen)*, roadmap = *where we're going + how far (living)*. The brief opens a product; the roadmap tracks it.
 - When in doubt between story and plan: story = *what is needed (is it done yet)*, plan = *how this change works*.
 - When in doubt between plan and wiki: plan = *one change (frozen after ship)*, wiki = *the current state of a topic (living)*.
 - Before starting: run intake (06-intake.md) — classify the input + pick a lane (05-risk.md). The higher the lane, the more artifact + proof is needed up front.

@@ -20,6 +20,7 @@ Rules for agents working in a product that applies riverflow.
 | Situation | Artifact | Stored in |
 | --- | --- | --- |
 | A new product/feature goal | `product-brief` | `docs/plans/` |
+| Where a product is heading + how far along (multi-theme product) | `roadmap` | `docs/roadmap/` |
 | A user need to describe | `user-story` | `docs/stories/` |
 | A change to design before implementing (technical design + steps) | `plan` | `docs/plans/` |
 | Record how a shipped capability *currently* works (living as-built) | `wiki` | `docs/wiki/` |

@@ -2,6 +2,7 @@
 
 - **Status:** draft | approved | done
 - **Related brief:** <link>
+- **Serves:** <roadmap theme this advances, e.g. docs/roadmap/<product>.md → "<theme>" — or —>
 - **Related stories:** <link, link>
 - **Related ADRs:** <link>
 

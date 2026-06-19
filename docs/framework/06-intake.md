@@ -76,12 +76,13 @@ session off course.
 Before editing code/artifacts, the agent reads out this block:
 
 ```
-Lane:   normal
-Type:   change request
-Docs:   plan-0002, ADR-0004
-Wiki:   docs/wiki/rbac.md (read first; update on ship)
-Story:  docs/stories/0003-... (or: none yet → propose creating | not needed — tiny patch)
-Proof:  unit + integration
+Lane:    normal
+Type:    change request
+Docs:    plan-0002, ADR-0004
+Wiki:    docs/wiki/rbac.md (read first; update on ship)
+Roadmap: docs/roadmap/<product>.md → theme "<theme>" (refresh on ship) | n/a
+Story:   docs/stories/0003-... (or: none yet → propose creating | not needed — tiny patch)
+Proof:   unit + integration
 ```
 
 The `Story` line forces a **definite** choice: point to an existing file name, **propose
@@ -92,6 +93,11 @@ The `Wiki` line closes both ends: the topic page name to **read first** (recall)
 that the page must be **updated on ship** (see phase 6, [02-lifecycle](02-lifecycle.md)). A topic
 with no page yet → write "none yet → create on ship"; a change that touches no capability worth
 recording → "not needed".
+
+The `Roadmap` line (only when the product has one) names the theme this work serves and reminds
+that the theme status is **refreshed on ship**. It is "n/a" for a single-feature product or
+infra-only work. When the backlog has run dry, refill it from the roadmap's gap-to-vision — do not
+invent work; diff the roadmap against the wiki and graduate fresh backlog items.
 
 ## Lane → what intake needs (ties to 05-risk)
 

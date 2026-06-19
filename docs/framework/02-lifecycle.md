@@ -19,7 +19,7 @@ This is the loop as it actually runs: **brainstorm a problem → log the plan �
 
 Clarify the problem, the user, the goals, the non-goals, the success metrics.
 
-- **Artifact:** `product-brief`
+- **Artifact:** `product-brief`; for a multi-theme product, the `roadmap` (`docs/roadmap/<product>.md`) is the standing input here — discovery **pulls/refills the backlog** by diffing the roadmap's gap-to-vision against the wiki (as-built).
 - **Human:** owns intent, locks in goals & non-goals.
 - **Agent:** asks clarifying questions, drafts the brief, flags unverified assumptions.
 - **Exit when:** there is a human-approved brief.
@@ -69,6 +69,7 @@ Release and close the learning loop.
 
 - **Artifact:** `wiki` (update the as-built), `worklog` (ship note), `retro` (for a milestone)
 - **Agent:** before closing the session, **update `docs/wiki/<topic>.md`** for every capability this change touches — overwrite the current state, update `updated`/`verified_against_code`/`source_plans`. This is a **mandatory** step, not goodwill: a plan is the commitment of one change, the wiki is where current-state settles. If the topic has no page yet, create one from `docs/framework/templates/wiki.md`.
+- **Agent (roadmap):** if the shipped plan `Serves:` a roadmap theme, refresh that theme's status in `docs/roadmap/<product>.md` (e.g. `in-progress → shipped`) and the `updated`/`progress` frontmatter — the same forced-update discipline as the wiki, so the forward view does not rot.
 - **Human + Agent:** write the retro together — what worked, what to fix next time.
 
 ## The loop
@@ -76,3 +77,12 @@ Release and close the learning loop.
 After ship, the lessons in `retro` feed back into the `discovery` of the next cycle. riverflow assumes continuous iteration, not a one-way waterfall.
 
 Between cycles, **deliberately deferred** work does not vanish: the "still open" items in a worklog and the ideas-that-surfaced-but-aren't-up-yet land in `backlog` (`docs/backlogs/`). The next `discovery` cycle pulls from the backlog, picking items up into story/plan (`status: promoted`). → [03-artifacts.md](03-artifacts.md)
+
+This is the **bottom-up** feed (work trickles up from sessions). A multi-theme product also needs a **top-down** feed so it keeps moving when the backlog runs dry: the `roadmap` sits **above** the loop as a standing input —
+
+```
+roadmap (north-star + themes)
+   └─ refills → backlog → story/plan → ship → refresh roadmap progress
+```
+
+When the backlog empties but the vision is not met, discovery diffs the roadmap's gap-to-vision against the wiki and graduates fresh backlog items; when the vision itself changes, the same diff generates new work. The roadmap is the product-level mirror of the wiki — wiki for *where we are*, roadmap for *where we're going*. → [ADR-0005](../decisions/0005-product-roadmap-forward-layer.md)

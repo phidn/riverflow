@@ -11,6 +11,32 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.7.0] — 2026-06-19
+
+### Added
+- **`roadmap` — the per-product forward-looking layer** (new artifact type, the catalog's 9th).
+  It closes the one empty cell in the catalog: *product scope, living, future direction*. A page
+  `docs/roadmap/<product>.md` holds a stable north-star, `Now / Next / Later` themes with status,
+  and a gap-to-vision read — the product-level mirror of the wiki (wiki = *where we are*, roadmap =
+  *where we're going*). It is the **top-down source that refills the backlog**: when the backlog
+  runs dry or the vision changes, diff the roadmap against the wiki and graduate new backlog items.
+  **Optional by scale** (a single-feature product stays on its `product-brief`). Slug-named, in its
+  own `docs/roadmap/` dir, overwritten in place, refreshed at the Ship gate. → [ADR-0005](../decisions/0005-product-roadmap-forward-layer.md), [plan-0004](../plans/0004-product-roadmap-forward-layer.md)
+- **New template** `docs/framework/templates/roadmap.md`, and a self-hosted example at
+  `docs/roadmap/riverflow.md` (the framework's own roadmap).
+- **Plan `Serves:` back-link** — a plan that advances a roadmap theme names it; the roadmap holds
+  theme status as the single source of truth (no two-place sync).
+- An installed repo picking this up gets the new template via the `rv:update-version` copy step;
+  create `docs/roadmap/<product>.md` from the template when the product spans multiple themes.
+
+### Changed
+- **Lifecycle gains a top-down feed.** `02-lifecycle` documents the roadmap sitting *above* the
+  loop (`roadmap → backlog → story/plan → ship → refresh roadmap`), referenced in phase 1
+  (Discovery refills the backlog from it) and phase 6 (Ship refreshes theme status).
+- **Intake Output block gains a `Roadmap:` line** (which theme this work serves, refreshed on ship;
+  "n/a" for single-feature/infra work), with a note to refill a dry backlog from the roadmap rather
+  than invent work.
+
 ## [0.6.0] — 2026-06-19
 
 > **Breaking** (pre-1.0, breaking lands in MINOR): templates moved from the top-level
