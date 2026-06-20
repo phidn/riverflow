@@ -4,12 +4,12 @@ who: both
 lane: normal
 input_type: framework-improvement
 outcome: completed
-touched: [plan-0003, backlog-0002, playbook-0001]
+touched: [plan-0005, backlog-0003, playbook-0001]
 files_changed:
   - .claude/skills/rv:playbook/SKILL.md
   - docs/framework/templates/playbook.md
-  - docs/plans/0003-rv-playbook-skill.md
-  - docs/backlogs/0002-rv-playbook-graduate-core.md
+  - docs/plans/0005-rv-playbook-skill.md
+  - docs/backlogs/0003-rv-playbook-graduate-core.md
   - docs/playbooks/0001-author-a-riverflow-skill.md
 friction: none
 ---
@@ -24,8 +24,8 @@ friction: none
   intake (lane `normal`, no hard gate) → surfaced the core tension (where it lives + what form) →
   asked 3 design-forking questions. Human chose: **descriptive doc only**, **in-project (copy to
   reuse)**, **standalone-first then graduate to core**, and preferred the name **playbook**.
-- Crystallized [plan-0003](../plans/0003-rv-playbook-skill.md) (`draft`→`approved`→`done`) and
-  [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md) (graduation deferred).
+- Crystallized [plan-0005](../plans/0005-rv-playbook-skill.md) (`draft`→`approved`→`done`) and
+  [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md) (graduation deferred).
 - Implemented `docs/framework/templates/playbook.md` and `.claude/skills/rv:playbook/SKILL.md` (procedure:
   detect → identify process → supplement from docs → distill/generalize → write → hand off; plus a
   Boundaries section and an explicit "why this is NOT rv:recap" table).
@@ -37,14 +37,14 @@ friction: none
 ## In-place decisions
 
 - Named it `playbook` not `workflow` — "workflow" collides with Claude Code's Workflow
-  orchestration; "playbook" = read-and-follow. (In plan-0003 Decisions.)
+  orchestration; "playbook" = read-and-follow. (In plan-0005 Decisions.)
 - Kept "playbook as a portable artifact category" as a **local** decision, to be promoted to an ADR
-  at graduation rather than now. (In plan-0003 Decisions + backlog-0002.)
+  at graduation rather than now. (In plan-0005 Decisions + backlog-0003.)
 
 ## Still open
 
 - [ ] Graduate `rv:playbook` into framework core (ADR + `03-artifacts.md` catalog + README /
-      `rv:update-version` / `rv:release` wiring) — [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md),
+      `rv:update-version` / `rv:release` wiring) — [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md),
       pick up after ≥2–3 playbooks are reused.
 - [ ] Possible later rung: doc→skill graduation (a proven playbook → executable `SKILL.md`).
 

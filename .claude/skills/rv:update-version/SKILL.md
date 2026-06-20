@@ -1,5 +1,6 @@
 ---
 name: rv:update-version
+install: true   # shipped on install — see ADR-0006 (install: is the single source of truth)
 description: Check whether the installed riverflow framework is out of date against the latest on GitHub, and offer to update. Canonical trigger is the prefix "rv:update-version". Clones https://github.com/phidn/riverflow into a temp dir, reads its docs/framework/VERSION, semver-compares it with the version installed in this repo, shows the changelog delta, and — only if the user confirms — copies the newer framework (templates included) and skills over (never touching the user's own docs instances). Use when the user types "rv:update-version" or otherwise asks to check/apply riverflow updates (e.g. "is riverflow up to date?", "update riverflow", "/rv:update-version").
 ---
 
@@ -100,9 +101,15 @@ skills from `$TMP` — never the example instances
 ```bash
 # standard install layout — adjust the dest prefix for an embedded layout
 cp -R "$TMP/docs/framework/."            docs/framework/   # templates ride along inside framework/templates/
-cp -R "$TMP/.claude/skills/rv:recap/."          ".claude/skills/rv:recap/"
-cp -R "$TMP/.claude/skills/rv:brainstorm/."     ".claude/skills/rv:brainstorm/"
-cp -R "$TMP/.claude/skills/rv:update-version/." ".claude/skills/rv:update-version/"
+
+# copy only the skills riverflow marks shippable — `install: true` in SKILL.md frontmatter
+# is the single source of truth (ADR-0006); `install: false` (e.g. rv:release) is skipped.
+for d in "$TMP"/.claude/skills/*/; do
+  grep -qE '^install:[[:space:]]*true\b' "$d/SKILL.md" 2>/dev/null || continue
+  name=$(basename "$d")
+  mkdir -p ".claude/skills/$name"
+  cp -R "$d." ".claude/skills/$name/"
+done
 
 # one-time relocation (crossing 0.6.0): the old top-level templates dir is now obsolete
 [ -d docs/templates ] && rm -rf docs/templates

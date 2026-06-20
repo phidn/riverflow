@@ -1,5 +1,6 @@
 ---
 name: rv:release
+install: false   # CORE-ONLY, never installed — see ADR-0006 (install: is the single source of truth)
 description: CORE-MAINTAINER ONLY — cut a new riverflow framework version. Bumps docs/framework/VERSION and adds a matching docs/framework/CHANGELOG.md entry (deciding MAJOR/MINOR/PATCH from the changes since the last release, per the framework's own SemVer rules). This skill is NOT part of an install — it lives only in the riverflow core repo and is never copied into a project that installs riverflow. Use when maintaining the riverflow repo itself and you want to release a new version, e.g. "rv:release", "rv:release 0.2.0", "bump riverflow version", "cut a riverflow release".
 ---
 
@@ -9,9 +10,9 @@ description: CORE-MAINTAINER ONLY — cut a new riverflow framework version. Bum
 riverflow **core** repo, never in a project that merely installs riverflow. It is the counterpart
 to `rv:update-version` (which is the *consumer* side: pull the latest into an install).
 
-> Not shipped on install. The install prompt and `rv:update-version` copy only `rv:recap`,
-> `rv:brainstorm`, and `rv:update-version`. This skill is deliberately excluded — keep it that
-> way (see "Boundaries").
+> Not shipped on install. This is enforced by its frontmatter `install: false` — the single
+> source of truth the install prompt and `rv:update-version` read to decide what to copy (ADR-0006).
+> Keep this skill marked `install: false` (see "Boundaries").
 
 ## When to use
 
@@ -65,9 +66,10 @@ user this skill is core-only — they probably want `rv:update-version` instead.
 
 ## Boundaries
 
-- **Core-only, never installed.** Do not add `rv:release` to the README install prompt or to the
-  copy list in `rv:update-version`. Those propagate only `rv:recap` + `rv:brainstorm` +
-  `rv:update-version`. If you ever extend the update/install copy logic, keep `rv:release` out of it.
+- **Core-only, never installed.** This is governed entirely by the `install: false` field in this
+  skill's frontmatter — the install prompt and `rv:update-version` copy only skills marked
+  `install: true` (ADR-0006), so there is no per-skill list to maintain. Keep this skill's marker
+  `install: false`; never special-case skill names in the copy logic.
 - Bump **only** in the core repo (step 1). Never bump `VERSION` in an installed/host repo.
 - VERSION and CHANGELOG move together — never bump one without the other, or the consumer-side
   `rv:update-version` check will show a number with no explanation.

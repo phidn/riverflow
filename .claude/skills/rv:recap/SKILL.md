@@ -1,5 +1,6 @@
 ---
 name: rv:recap
+install: true   # shipped on install — see ADR-0006 (install: is the single source of truth)
 description: Lock in and save the decisions + ways-of-working worth keeping from the current conversation into riverflow artifacts. By default it crystallizes the full package — a thin plan + stories (when the session built a feature that has none yet), plus ADR + worklog + wiki. This is the intent-layer fix for emergent work: you don't write the plan first, rv:recap crystallizes it at the end from the work you actually did. Canonical trigger is the prefix "rv:recap". Auto-selects a recommendation and writes it immediately (without asking first); the user adjusts afterward if needed. Supports targeted recap from the prefix — "rv:recap plan" / "rv:recap story" / "rv:recap wiki" / "rv:recap worklog" / "rv:recap adr" do just that part ("rv:recap spec" is a deprecated alias for "rv:recap plan"); a bare "rv:recap" does the full package. Use when the user types "rv:recap" (optionally followed by a part) or otherwise asks to save/record from this conversation into riverflow (e.g. "save to riverflow", "capture this into riverflow", "/rv:recap"). Scans the conversation, selects the candidates worth keeping, writes the files per the riverflow conventions, updates the Decision Log + the wiki.
 ---
 

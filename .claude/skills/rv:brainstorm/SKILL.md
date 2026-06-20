@@ -1,5 +1,6 @@
 ---
 name: rv:brainstorm
+install: true   # shipped on install — see ADR-0006 (install: is the single source of truth)
 description: Enter the riverflow lifecycle at the front door — before any plan or code exists. Facilitates a structured brainstorm of a problem/idea (context recall from wiki/ADRs/plans, intake classification, options + trade-offs, pressure-testing) and crystallizes the result into a draft plan in docs/plans/ (plus proposed ADRs / backlog items when they surface), ready for the human to review and flip to approved. This is the "brainstorm → log plan" front half of the loop; rv:recap is the back half. Canonical trigger is the prefix "rv:brainstorm" followed by the topic/problem (e.g. "rv:brainstorm offline mode for the editor", "/rv:brainstorm"). Also fires on natural phrasing like "let's brainstorm X into a riverflow plan". Use when the user wants to think a change through with the framework before implementing — NOT when they ask for a direct fix or already have an approved plan.
 ---
 

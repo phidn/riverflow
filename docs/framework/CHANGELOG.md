@@ -11,6 +11,23 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.8.0] — 2026-06-20
+
+### Added
+- **`rv:playbook` skill** (shipped on install) — distills the *reusable process* a conversation
+  followed (e.g. *elicit BRD → design → …*) into a portable **playbook** in `docs/playbooks/`: a
+  read-and-follow doc you copy into another riverflow project and re-run there. The portable-process
+  counterpart of `rv:recap` (project intent). Ships with a `playbook` template. → [plan-0005](../plans/0005-rv-playbook-skill.md)
+- **`install:` skill marker** — every `SKILL.md` now carries an `install:` frontmatter field that is
+  the single source of truth for which skills ship on install (`true`) vs are core-only (`false`,
+  e.g. `rv:release`). → [ADR-0006](../decisions/0006-skill-install-marker.md)
+
+### Changed
+- Install/update machinery now **derives the skill set from the `install:` marker** instead of
+  hand-maintained name lists: the README install + migrate prompts, the prose, the `rv:update-version`
+  copy step (a frontmatter-grep loop), and the `rv:release` boundaries. Adding a new skill no longer
+  requires editing any of these — set its `install:` field and it's picked up automatically.
+
 ## [0.7.0] — 2026-06-19
 
 ### Added

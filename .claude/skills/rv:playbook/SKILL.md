@@ -1,5 +1,6 @@
 ---
 name: rv:playbook
+install: true   # shipped on install — see ADR-0006 (install: is the single source of truth)
 description: Distill the reusable process the current conversation followed into a portable playbook — a read-and-follow Markdown file in docs/playbooks/ that can be copied into another riverflow project and re-run there. Unlike rv:recap (which captures project-specific intent — what/why — as plan/ADR/wiki), this captures the how: the repeatable sequence of steps (e.g. elicit BRD → draft design → …), generalized with placeholders for project-specifics. Because the session runs on riverflow, most steps and their per-step artifacts are recoverable straight from the conversation; where a step is thin, the skill supplements from existing docs/ (wiki/plans/ADRs). Canonical trigger is the prefix "rv:playbook" optionally followed by a name (e.g. "rv:playbook brd-to-design", "/rv:playbook"). Also fires on natural phrasing like "distill this into a playbook", "turn this workflow into a reusable doc", "lưu quy trình này thành playbook". Auto-writes a best-recommendation playbook immediately (without asking first); the user adjusts afterward. Use when the user wants to capture the WORKFLOW of a session as something reusable across projects — NOT for capturing this project's decisions (that is rv:recap).
 ---
 

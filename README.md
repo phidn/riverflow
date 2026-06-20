@@ -24,11 +24,12 @@ riverflow is the **lightweight, single-operator counterpart** of that idea. Shop
 riverflow/
 ├── README.md              # this file
 ├── AGENTS.md              # rules for agents working in a repo that follows riverflow
-├── .claude/skills/        # Claude Code skills
-│   ├── rv:brainstorm/     # /rv:brainstorm — enter the lifecycle: brainstorm a problem → draft plan    (shipped on install)
-│   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts   (shipped on install)
-│   ├── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → update (shipped on install)
-│   └── rv:release/        # /rv:release — bump the core version + CHANGELOG  (CORE-ONLY, NOT installed)
+├── .claude/skills/        # Claude Code skills — each SKILL.md frontmatter has `install:` (the single source of truth for what ships; see ADR-0006)
+│   ├── rv:brainstorm/     # /rv:brainstorm — enter the lifecycle: brainstorm a problem → draft plan       (install: true)
+│   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts      (install: true)
+│   ├── rv:playbook/       # /rv:playbook — distill a conversation's reusable process → portable playbook   (install: true)
+│   ├── rv:update-version/ # /rv:update-version — check installed version vs. latest on GitHub → update      (install: true)
+│   └── rv:release/        # /rv:release — bump the core version + CHANGELOG                                 (install: false, CORE-ONLY)
 └── docs/
     ├── framework/             # framework definition (the meta layer) — riverflow itself
     │   ├── VERSION            # current framework version (semver) — single source of truth
@@ -65,15 +66,15 @@ The simplest way to add riverflow to a project: paste this prompt to Claude (in 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir, then set my project up to
 follow riverflow: copy its `docs/framework/` into my repo (the templates ride along
-inside `docs/framework/templates/`), copy
-its `.claude/skills/rv:brainstorm/`, `.claude/skills/rv:recap/` and
-`.claude/skills/rv:update-version/` skills into my `.claude/skills/`, add an
+inside `docs/framework/templates/`), copy every skill under its `.claude/skills/`
+whose `SKILL.md` frontmatter has `install: true` into my `.claude/skills/` (skip any
+with `install: false` — those are core-only and must not be installed), add an
 `AGENTS.md` based on riverflow's, and create the empty
 `docs/{decisions,stories,plans,wiki,backlogs,worklogs}/` folders. Read
 riverflow's README + AGENTS.md first, then summarize the conventions back to me.
 ```
 
-Claude reads the framework, copies the conventions, templates (inside `docs/framework/templates/`), and the `rv:brainstorm` + `rv:recap` + `rv:update-version` skills into your repo, and scaffolds the `docs/` layout — no manual setup. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
+Claude reads the framework, copies the conventions, templates (inside `docs/framework/templates/`), and every skill marked `install: true` into your repo, and scaffolds the `docs/` layout — no manual setup. The `install:` frontmatter field is the single source of truth for what ships (see ADR-0006), so adding a new skill never means editing this prompt. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
 
 ### Migrate from coflow
 
@@ -105,8 +106,8 @@ artifact it best fits → its target path, using these heuristics:
 
 PASS 2 — MIGRATE (only after I approve the table). Install riverflow's scaffold:
 copy docs/framework/ in (templates ride inside it at docs/framework/templates/),
-copy the .claude/skills/
-rv:brainstorm + rv:recap + rv:update-version skills into .claude/skills/, add an
+copy every skill under .claude/skills/ whose SKILL.md frontmatter has
+`install: true` into .claude/skills/ (skip any `install: false` — core-only), add an
 AGENTS.md based on riverflow's (re-point a CLAUDE.md symlink at it if present),
 and create the empty docs/{decisions,stories,plans,wiki,backlogs,worklogs}/
 folders. Then, per the approved table, `git mv` each source doc to its riverflow
@@ -125,6 +126,7 @@ How it differs from the coflow path: coflow is a known predecessor so its layout
 3. Name files per `docs/framework/04-conventions.md`.
 4. Agents read `AGENTS.md` before creating or editing any artifact.
 5. At the end of a working session, **`/rv:recap`** crystallizes what happened back into `docs/` (plan/story if emergent, ADR, worklog, wiki). The two skills are the two halves of the loop: *brainstorm → log plan → review plan → implement → recap*.
+6. To turn the *reusable process* a session followed (e.g. *elicit BRD → design → …*) into a portable, copy-to-another-project recipe, type **`/rv:playbook`** — it distills a playbook into `docs/playbooks/`. Where `rv:recap` captures *this project's intent*, `rv:playbook` captures the *portable how*.
 
 ## Versioning & updates
 

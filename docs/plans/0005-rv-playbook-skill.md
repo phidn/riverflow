@@ -1,13 +1,21 @@
-# Plan-0003: `rv:playbook` skill — distill a conversation into a reusable playbook
+# Plan-0005: `rv:playbook` skill — distill a conversation into a reusable playbook
 
 - **Status:** done
 - **Related brief:** —
 - **Related stories:** — (framework-adjacent change; the "user" is the human running the lifecycle)
 - **Related ADRs:** — (the "playbook as a portable artifact category" decision is kept local for now;
-  promote to an ADR when the skill graduates into framework core — see [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md))
+  promote to an ADR when the skill graduates into framework core — see [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md))
 
 > Status is the review gate: `draft` while brainstorming, `approved` once a human has reviewed,
 > `done` when implemented with proof.
+
+> **Update (2026-06-20, same day):** the "standalone-first, do not ship on install" decision below
+> was **reversed by the human** — `rv:playbook` is meant to be installed with riverflow (that is its
+> purpose). It is now marked `install: true` and ships like the other consumer skills, via the marker
+> mechanism in [ADR-0006](../decisions/0006-skill-install-marker.md). The distribution items in
+> [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md) are done; only the framework-catalog
+> graduation (adding `playbook` to `03-artifacts.md`) remains. This plan stays frozen as the record
+> of the original intent.
 
 ## Summary
 
@@ -19,7 +27,7 @@ be **copied into another riverflow project and re-run there**. Because the sessi
 riverflow, most steps and their per-step artifacts are recoverable straight from the conversation;
 where a step is thin, the skill **supplements from existing `docs/`** (wiki/plans/ADRs). Scoped as
 a **standalone skill first** (experiment in this repo); graduation into framework core is deferred
-to [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md). Complements `rv:recap` (project
+to [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md). Complements `rv:recap` (project
 intent) — this is the *portable process* counterpart.
 
 ## Main flow
@@ -90,7 +98,7 @@ existing `docs/` tree; it adds a `docs/playbooks/` directory on first use.
   simple and avoids premature codification. The doc→skill graduation is parked as a future idea.
 - **Standalone skill first, core later** — de-risk before changing the framework; graduation
   (template into catalog, README/update-version wiring, an ADR for the new artifact category)
-  is [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md).
+  is [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md).
 - **Store in-project** (`docs/playbooks/`), reuse by copy — keeps the artifact living with the
   session it came from (riverflow principle); a central library was rejected as out of framework
   scope.
@@ -104,7 +112,7 @@ existing `docs/` tree; it adds a `docs/playbooks/` directory on first use.
 
 - [x] Write `docs/framework/templates/playbook.md`
 - [x] Write `.claude/skills/rv:playbook/SKILL.md` (procedure + boundaries vs `rv:recap`)
-- [x] Create `docs/backlogs/0002-rv-playbook-graduate-core.md` (graduation: ADR + catalog + wiring)
+- [x] Create `docs/backlogs/0003-rv-playbook-graduate-core.md` (graduation: ADR + catalog + wiring)
 - [x] This plan + a worklog
 - [x] Smoke-test: run `rv:playbook` against this very conversation → `docs/playbooks/0001-author-a-riverflow-skill.md`
 
@@ -128,6 +136,6 @@ existing `docs/` tree; it adds a `docs/playbooks/` directory on first use.
 ## Out of scope
 
 - Wiring the playbook into framework core (catalog, README, `rv:update-version`, an ADR) — that is
-  [backlog-0002](../backlogs/0002-rv-playbook-graduate-core.md).
+  [backlog-0003](../backlogs/0003-rv-playbook-graduate-core.md).
 - Generating an executable skill from a playbook (the doc→skill graduation).
 - A central / global playbook library outside the project.
