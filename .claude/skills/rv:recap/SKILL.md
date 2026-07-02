@@ -67,7 +67,7 @@ Decision / output layer:
   section instead — don't mint an ADR for them.
 - **Worklog** — what this session did, small in-place decisions, what is still open (handoff).
 - **Wiki** — the living as-built of a capability the session shipped/changed, by topic (phase 6 of
-  `AGENTS.md` makes this mandatory on ship).
+  `CLAUDE.md` makes this mandatory on ship).
 
 The remaining riverflow types (brief/retro) are NOT part of this skill.
 

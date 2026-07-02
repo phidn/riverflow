@@ -117,8 +117,8 @@ done
 
 - This overwrites the framework docs (templates included) and the riverflow skills (the parts the
   user does not author) and bumps `docs/framework/VERSION` to `REMOTE` as a side effect of copying it.
-- AGENTS.md: do **not** blindly overwrite — the host may have customized it. If the upstream
-  AGENTS.md changed, tell the user and offer to show a diff rather than clobbering theirs.
+- CLAUDE.md: do **not** blindly overwrite — the host may have customized it. If the upstream
+  CLAUDE.md changed, tell the user and offer to show a diff rather than clobbering theirs.
 - If the changelog lists a **MAJOR** bump (a breaking convention change), call that out explicitly
   and point the user at the relevant changelog section before/after applying — they may need to
   migrate existing artifacts.
@@ -129,7 +129,7 @@ done
 rm -rf "$TMP"
 ```
 
-Summarize: old version → new version, which directories were refreshed, and anything (AGENTS.md,
+Summarize: old version → new version, which directories were refreshed, and anything (CLAUDE.md,
 a MAJOR migration) left for the user to handle. Offer to write a `worklog` recording the update
 (lane `tiny`, `input_type: maintenance`). Don't commit/push on your own — ask.
 

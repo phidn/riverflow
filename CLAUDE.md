@@ -1,4 +1,4 @@
-# AGENTS.md — riverflow
+# CLAUDE.md — riverflow
 
 Rules for agents working in a product that applies riverflow.
 

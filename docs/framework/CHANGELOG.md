@@ -11,6 +11,15 @@ Format: [Keep a Changelog](https://keepachangelog.com/), versions follow [SemVer
 - **MINOR** — a new artifact type, skill, template, or framework doc, backward compatible.
 - **PATCH** — wording fixes, clarifications, typos — no behavior change for an installed repo.
 
+## [0.8.1] — 2026-07-02
+
+### Removed
+- **`AGENTS.md` dropped — `CLAUDE.md` is the single agent-rules file.** The `AGENTS.md → CLAUDE.md`
+  symlink is gone from the core repo; the README install/migrate prompts, the coflow migration
+  prompt, and the `rv:recap` / `rv:update-version` skills now reference `CLAUDE.md` only. Installed
+  repos need no action — on your next update, treat any local `AGENTS.md` as obsolete (delete it or
+  keep it as your own symlink to `CLAUDE.md`).
+
 ## [0.8.0] — 2026-06-20
 
 ### Added

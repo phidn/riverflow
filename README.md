@@ -23,7 +23,7 @@ riverflow is the **lightweight, single-operator counterpart** of that idea. Shop
 ```
 riverflow/
 ├── README.md              # this file
-├── AGENTS.md              # rules for agents working in a repo that follows riverflow
+├── CLAUDE.md              # rules for agents working in a repo that follows riverflow
 ├── .claude/skills/        # Claude Code skills — each SKILL.md frontmatter has `install:` (the single source of truth for what ships; see ADR-0006)
 │   ├── rv:brainstorm/     # /rv:brainstorm — enter the lifecycle: brainstorm a problem → draft plan       (install: true)
 │   ├── rv:recap/          # /rv:recap — lock in & save decisions/wiki from a conversation → artifacts      (install: true)
@@ -68,10 +68,10 @@ Clone https://github.com/phidn/riverflow into a temp dir, then set my project up
 follow riverflow: copy its `docs/framework/` into my repo (the templates ride along
 inside `docs/framework/templates/`), copy every skill under its `.claude/skills/`
 whose `SKILL.md` frontmatter has `install: true` into my `.claude/skills/` (skip any
-with `install: false` — those are core-only and must not be installed), add an
-`AGENTS.md` based on riverflow's, and create the empty
+with `install: false` — those are core-only and must not be installed), add a
+`CLAUDE.md` based on riverflow's, and create the empty
 `docs/{decisions,stories,plans,wiki,backlogs,worklogs}/` folders. Read
-riverflow's README + AGENTS.md first, then summarize the conventions back to me.
+riverflow's README + CLAUDE.md first, then summarize the conventions back to me.
 ```
 
 Claude reads the framework, copies the conventions, templates (inside `docs/framework/templates/`), and every skill marked `install: true` into your repo, and scaffolds the `docs/` layout — no manual setup. The `install:` frontmatter field is the single source of truth for what ships (see ADR-0006), so adding a new skill never means editing this prompt. The framework version (`docs/framework/VERSION`) comes along inside `docs/framework/`, so your install is stamped automatically.
@@ -86,7 +86,7 @@ Not on coflow, but the project **already has its own docs** — a `docs/` tree, 
 
 ```
 Clone https://github.com/phidn/riverflow into a temp dir and read its README +
-AGENTS.md + docs/framework/ first. My project already has its own documentation
+CLAUDE.md + docs/framework/ first. My project already has its own documentation
 and I want to adopt riverflow without losing it. Do this in two passes:
 
 PASS 1 — SURVEY (read-only, no changes). Inventory how this project currently
@@ -107,8 +107,8 @@ artifact it best fits → its target path, using these heuristics:
 PASS 2 — MIGRATE (only after I approve the table). Install riverflow's scaffold:
 copy docs/framework/ in (templates ride inside it at docs/framework/templates/),
 copy every skill under .claude/skills/ whose SKILL.md frontmatter has
-`install: true` into .claude/skills/ (skip any `install: false` — core-only), add an
-AGENTS.md based on riverflow's (re-point a CLAUDE.md symlink at it if present),
+`install: true` into .claude/skills/ (skip any `install: false` — core-only), add a
+CLAUDE.md based on riverflow's,
 and create the empty docs/{decisions,stories,plans,wiki,backlogs,worklogs}/
 folders. Then, per the approved table, `git mv` each source doc to its riverflow
 home and renumber to the <NNNN>-<slug>.md convention; where a doc's shape differs
@@ -117,14 +117,14 @@ original prose. Do NOT delete originals I marked "leave in place". Finally,
 summarize what moved where, what you reworded, and what you left untouched.
 ```
 
-How it differs from the coflow path: coflow is a known predecessor so its layout maps mechanically; an arbitrary project does not, so the survey-then-confirm gate exists to keep you in the loop. The riverflow scaffold (framework, templates, skills, `AGENTS.md`) installs exactly as in a fresh install; the only judgment call is which of your existing docs becomes which artifact — and you approve that mapping before any `git mv` runs. After migrating, run `/rv:update-version` anytime to stay current.
+How it differs from the coflow path: coflow is a known predecessor so its layout maps mechanically; an arbitrary project does not, so the survey-then-confirm gate exists to keep you in the loop. The riverflow scaffold (framework, templates, skills, `CLAUDE.md`) installs exactly as in a fresh install; the only judgment call is which of your existing docs becomes which artifact — and you approve that mapping before any `git mv` runs. After migrating, run `/rv:update-version` anytime to stay current.
 
 ## How to use it
 
 1. Read `docs/framework/00-overview.md` to get the model.
 2. When you start a new product/feature, type **`/rv:brainstorm <topic>`** — it walks the problem into the lifecycle (context recall → intake → options) and ends in a `draft` plan for you to approve. Or copy the matching template from `docs/framework/templates/` into `docs/<type>/` by hand.
 3. Name files per `docs/framework/04-conventions.md`.
-4. Agents read `AGENTS.md` before creating or editing any artifact.
+4. Agents read `CLAUDE.md` before creating or editing any artifact.
 5. At the end of a working session, **`/rv:recap`** crystallizes what happened back into `docs/` (plan/story if emergent, ADR, worklog, wiki). The two skills are the two halves of the loop: *brainstorm → log plan → review plan → implement → recap*.
 6. To turn the *reusable process* a session followed (e.g. *elicit BRD → design → …*) into a portable, copy-to-another-project recipe, type **`/rv:playbook`** — it distills a playbook into `docs/playbooks/`. Where `rv:recap` captures *this project's intent*, `rv:playbook` captures the *portable how*.
 

@@ -37,7 +37,7 @@ relocating an old install's orphaned `docs/templates/` → delete the temp dir.
 - Upstream source of truth is the Git repo itself — no registry, no infrastructure (matches the
   README "pure Markdown, no infra" stance).
 - Read-only by default; the only write step (applying the update) requires explicit user
-  confirmation and never overwrites the user-authored docs instances or (blindly) `AGENTS.md`.
+  confirmation and never overwrites the user-authored docs instances or (blindly) `CLAUDE.md`.
 
 ## Maintenance rule (don't let the check lie)
 
